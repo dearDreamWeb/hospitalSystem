@@ -1,0 +1,20 @@
+<view class="notice-main">
+  <view class="situation-title">肺炎疫情</view>
+  <view class="title-second">疫情新闻</view>
+  <view>
+    <view 
+    wx:for="{{list}}" 
+    wx:key="list" 
+    wx:for-item="item" 
+    class="news-main"
+    data-data="{{item}}"
+    bindtap="jumpNewsInfo"
+    >
+      <view>{{item.title}}</view>
+      <view class="news-footer">
+        <view class="footer-date">发布时间：{{item.pubDate}}</view>
+        <view>信息来源：{{item.infoSource}}</view>
+      </view>
+    </view>
+  </view>
+</view>

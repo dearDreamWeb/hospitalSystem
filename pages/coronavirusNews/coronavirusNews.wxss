@@ -1,0 +1,22 @@
+.info-main {
+  padding: 12px 8px;
+  text-align: center;
+}
+
+.info-title {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.info-date,
+.info-source {
+  font-size: 14px;
+  color: #ccc;
+}
+.info-text{
+  margin-top: 16px;
+  font-size: 16px;
+  color: #3c3c3c;
+  text-align: justify;
+  text-indent: 2em;
+}

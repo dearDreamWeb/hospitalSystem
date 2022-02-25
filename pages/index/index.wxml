@@ -16,7 +16,7 @@
   </block>
 </swiper>
 <view class="notice-main">
-<view class="message-title">车位信息</view>
+<view class="message-title">医院信息</view>
 <block wx:for="{{list}}" wx:key="list">
     <navigator class="notice" 
     url='../location/location?id={{item.id}}'>

@@ -1,0 +1,6 @@
+<view class="info-main">
+  <view class="info-title">{{infoData.title}}</view>
+  <view class="info-date">发布时间：{{infoData.pubDate}}</view>
+  <view class="info-source">信息来源：{{infoData.infoSource}}</view>
+  <view class="info-text">{{infoData.summary}}</view>
+</view>

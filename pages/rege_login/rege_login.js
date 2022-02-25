@@ -44,32 +44,32 @@ Page({
       age
     } = e.detail.value;
 
-    // if (!name || !phone_number || !pwd || !sex || !age) {
-    //   wx.showToast({
-    //     title: '请完善个人信息',
-    //     icon: 'error',
-    //     mask: true
-    //   })
-    //   return;
-    // }
-    // const reg = /^1[0-9]{10}$/;
-    // if (!reg.test(phone_number)) {
-    //   wx.showToast({
-    //     title: '手机号输入错误',
-    //     icon: 'error',
-    //     mask: true
-    //   })
-    //   return;
-    // }
+    if (!name || !phone_number || !pwd || !sex || !age) {
+      wx.showToast({
+        title: '请完善个人信息',
+        icon: 'error',
+        mask: true
+      })
+      return;
+    }
+    const reg = /^1[0-9]{10}$/;
+    if (!reg.test(phone_number)) {
+      wx.showToast({
+        title: '手机号输入错误',
+        icon: 'error',
+        mask: true
+      })
+      return;
+    }
 
-    // if (typeof parseInt(age) === NaN || typeof parseInt(age) !== "number" ) {
-    //   wx.showToast({
-    //     title: '年龄输入错误',
-    //     icon: 'error',
-    //     mask: true
-    //   })
-    //   return;
-    // }
+    if (typeof parseInt(age) === NaN || typeof parseInt(age) !== "number") {
+      wx.showToast({
+        title: '年龄输入错误',
+        icon: 'error',
+        mask: true
+      })
+      return;
+    }
 
     this.setData({
       tabArr: {

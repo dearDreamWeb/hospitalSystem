@@ -1,0 +1,24 @@
+.notice-main{
+  padding: 0 8px;
+}
+.situation-title {
+  font-size: 24px;
+  margin: 12px 0;
+}
+.title-second{
+  font-size: 20px;
+}
+
+.news-main{
+  font-size: 16px;
+  color: #323269;
+  margin-top: 8px;
+  background-color: #eee;
+}
+.news-footer{
+  display: flex;
+  font-size: 12px;
+}
+.footer-date{
+  margin-right: 12px;
+}

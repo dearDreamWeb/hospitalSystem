@@ -1,14 +1,15 @@
 {
   "pages": [
+    "pages/coronavirus/coronavirus",
     "pages/index/index",
     "pages/rege_login/rege_login",
     "pages/phone_number/phone_number",
     "pages/my/my",
     "pages/my_payments/my_payments",
-    "pages/ad/ad",
     "pages/park/park",
     "pages/rent/rent",
-    "pages/community/message/message/message"
+    "pages/community/message/message/message",
+    "pages/coronavirusNews/coronavirusNews"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +27,7 @@
       },
       {
         "pagePath": "pages/park/park",
-        "text": "租用车位",
+        "text": "预约就诊",
         "iconPath": "images/appoint.png",
         "selectedIconPath": "images/appoint1.png"
       },
@@ -36,10 +37,9 @@
         "iconPath": "images/4.png",
         "selectedIconPath": "images/5.png"
       },
-      
       {
-        "pagePath": "pages/ad/ad",
-        "text": "公告",
+        "pagePath": "pages/coronavirus/coronavirus",
+        "text": "肺炎疫情",
         "iconPath": "images/announce.png",
         "selectedIconPath": "images/announce1.png"
       },

@@ -7,7 +7,6 @@ Page({
       curBdIndex: 1,
       defaultType: true,
       passwordType: true,
-
     }
 
   },
@@ -61,8 +60,9 @@ Page({
       })
       return;
     }
-
-    if (typeof parseInt(age) === NaN || typeof parseInt(age) !== "number") {
+    
+    const regAge = /^[1-9][0-9]{0,2}$/
+    if (!regAge.test(age)) {
       wx.showToast({
         title: '年龄输入错误',
         icon: 'error',

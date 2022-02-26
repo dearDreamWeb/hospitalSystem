@@ -1,55 +1,89 @@
-.notice-main{
+.notice-main {
   background-color: #eee;
   min-height: 100vh;
 }
+
 .situation-title {
   font-size: 24px;
   padding: 12px 8px;
 }
-.notice-content{
-  padding: 0 8px;
-  background-color: #fff;
+
+.statistics-tip {
+  font-size: 12px;
+  color: #3c3c3c;
+  margin-bottom: 8px;
 }
-.title-second{
+
+.notice-content {
+  padding: 8px;
+  background-color: #fff;
+  margin-bottom: 12px;
+}
+
+.title-second {
   font-size: 20px;
 }
-.statistics-main{
+
+.statistics-main {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: center;
+  margin-bottom: 12px;
 }
-.statistics-item{
+
+.tip-main {
+  padding: 4px 8px;
+  background-color: #eee;
+}
+
+.statistics-item {
   margin: 8px 0;
   margin-right: calc(10% / 3);
   width: 30%;
   border-radius: 5px;
 }
-.statistics-item:nth-of-type(1n){
+
+.statistics-item:nth-of-type(1n) {
   background-color: #f40;
 }
-.statistics-item:nth-of-type(2n){
+
+.statistics-item:nth-of-type(2n) {
   background-color: rgb(10, 212, 20);
 }
-.statistics-item:nth-of-type(3n){
+
+.statistics-item:nth-of-type(3n) {
   background-color: rgb(26, 99, 236);
 }
-.statistics-title{
+.statistics-item:nth-of-type(4n) {
+  background-color: rgb(185, 219, 33);
+}
+.statistics-item:nth-of-type(5n) {
+  background-color: rgb(219, 14, 168);
+}
+.statistics-item:nth-of-type(6n) {
+  background-color: rgb(219, 33, 64);
+}
+
+.statistics-title {
   color: #fff;
 }
-.statistics-count{
+
+.statistics-count {
   color: #eee;
 }
 
-.news-main{
+.news-main {
   font-size: 16px;
   color: #323269;
   margin-top: 8px;
 }
-.news-footer{
+
+.news-footer {
   display: flex;
   font-size: 12px;
 }
-.footer-date{
+
+.footer-date {
   margin-right: 12px;
 }

@@ -8,6 +8,10 @@
         <view class="statistics-count">{{item.count}}</view>
       </view>
     </view>
+    <view class="tip-main">
+      <view>提示：</view>
+      <view wx:for="{{tipsArr}}" wx:key="tipsArr" wx:for-item="item" class="statistics-tip">{{item}}</view>
+    </view>
   </view>
   <view class="notice-content">
     <view class="title-second">疫情新闻</view>

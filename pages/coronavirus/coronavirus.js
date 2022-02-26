@@ -35,7 +35,6 @@ Page({
       url: 'https://lab.isaaclin.cn/nCoV/api/overall',
       method: 'GET',
       success: (res) => {
-        console.log(res.data.results[0]);
         /**
          * confirmedCount 累计确诊人数
          * curedCount 治愈人数
@@ -89,6 +88,7 @@ Page({
         ]
         const tipsArr = [note1, note2, note3, remark1, remark2, remark3]
         this.setData({
+          ...this.data,
           statisticsData: statisticsDataArr,
           tipsArr
         })
@@ -97,24 +97,27 @@ Page({
         console.log('获取错误')
       }
     })
-    // 请求疫情新闻
-    wx.request({
-      url: 'https://lab.isaaclin.cn/nCoV/api/news?page=1&num=5',
-      method: 'GET',
-      success:  (res)=> {
-        console.log(res.data.results);
-        const data = res.data.results.map((item) => {
-          item.pubDate = new Date(Number(item.pubDate)).toLocaleDateString();
-          return item;
-        })
-        this.setData({
-          list: data,
-        })
-      },
-      fail() {
-        console.log('获取错误')
-      }
-    })
+    setTimeout(() => {
+      // 请求疫情新闻
+      wx.request({
+        url: 'https://lab.isaaclin.cn/nCoV/api/news?page=1&num=10',
+        method: 'GET',
+        success: (res) => {
+          console.log(res);
+          const data = res.data.results.map((item) => {
+            item.pubDate = new Date(Number(item.pubDate)).toLocaleDateString();
+            return item;
+          })
+          this.setData({
+            ...this.data,
+            list: data,
+          })
+        },
+        fail() {
+          console.log('获取错误')
+        }
+      })
+    }, 1000)
   },
   jumpNewsInfo(e) {
     const {

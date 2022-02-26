@@ -1,19 +1,23 @@
 <view class="notice-main">
   <view class="situation-title">肺炎疫情</view>
-  <view class="title-second">疫情新闻</view>
-  <view>
-    <view 
-    wx:for="{{list}}" 
-    wx:key="list" 
-    wx:for-item="item" 
-    class="news-main"
-    data-data="{{item}}"
-    bindtap="jumpNewsInfo"
-    >
-      <view>{{item.title}}</view>
-      <view class="news-footer">
-        <view class="footer-date">发布时间：{{item.pubDate}}</view>
-        <view>信息来源：{{item.infoSource}}</view>
+  <view class="notice-content">
+    <view class="title-second">全国疫情统计</view>
+    <view class="statistics-main">
+      <view wx:for="{{statisticsData}}" wx:key="statisticsData" wx:for-item="item" class="statistics-item">
+        <view class="statistics-title">{{item.text}}</view>
+        <view class="statistics-count">{{item.count}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="notice-content">
+    <view class="title-second">疫情新闻</view>
+    <view>
+      <view wx:for="{{list}}" wx:key="list" wx:for-item="item" class="news-main" data-data="{{item}}" bindtap="jumpNewsInfo">
+        <view>{{item.title}}</view>
+        <view class="news-footer">
+          <view class="footer-date">发布时间：{{item.pubDate}}</view>
+          <view>信息来源：{{item.infoSource}}</view>
+        </view>
       </view>
     </view>
   </view>

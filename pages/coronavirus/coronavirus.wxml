@@ -1,7 +1,10 @@
 <view class="notice-main">
   <view class="situation-title">肺炎疫情</view>
   <view class="notice-content">
-    <view class="title-second">全国疫情统计</view>
+    <view class="title-second">
+      全国疫情统计
+      <view class="statistics-updateTime">更新时间：{{updateTime}}</view>
+    </view>
     <view class="statistics-main">
       <view wx:for="{{statisticsData}}" wx:key="statisticsData" wx:for-item="item" class="statistics-item">
         <view class="statistics-title">{{item.text}}</view>

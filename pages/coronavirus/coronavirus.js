@@ -10,6 +10,8 @@ Page({
     tipsArr: [],
     // 全球疫情统计数据
     globalStatisticsData: [],
+    // 疫情统计数据更新时间
+    updateTime: 0,
 
     dataObj: {
       confirmedCount: '累计确诊人数',
@@ -61,6 +63,7 @@ Page({
           remark2,
           remark3
         } = res.data.results[0];
+        console.log(res.data.results[0]);
         const statisticsDataArr = [{
             text: dataObj.confirmedCount,
             count: confirmedCount,
@@ -89,6 +92,7 @@ Page({
         const tipsArr = [note1, note2, note3, remark1, remark2, remark3]
         this.setData({
           ...this.data,
+          updateTime: new Date(updateTime).toLocaleDateString(),
           statisticsData: statisticsDataArr,
           tipsArr
         })

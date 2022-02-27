@@ -79,6 +79,11 @@ Page({
       }
     })
   },
+  
+  /**
+   * 登录
+   * @param {*} e 
+   */
   UserLogin: function (e) {
     var json = JSON.stringify(e.detail.value)
     console.log("userlogin:" + json)

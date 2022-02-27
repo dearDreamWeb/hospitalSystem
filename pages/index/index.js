@@ -1,6 +1,6 @@
 //获取应用实例
 var app = getApp()
-Page({ 
+Page({
   data: {
     imgUrls: [
       '../../images/slider_1.jpeg',
@@ -11,18 +11,49 @@ Page({
     autoplay: true,
     interval: 5000,
     duration: 1000,
-    inputValue:''
+    inputValue: '',
+    isLoading: false,
+    list: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
+  /**
+   * 监听滚动事件加载信息
+   * @param {*} e 
+   */
+  onPageScroll: function (e) {
+    const {isLoading} = this.data;
+    if(isLoading){
+      return;
+    }
+    const query = wx.createSelectorQuery();
+    query.select('#page').boundingClientRect((rect) => {
+      const windowHeight = wx.getSystemInfoSync().windowHeight;
+      if (windowHeight + e.scrollTop >= rect.height) {
+        this.setData({
+          ...this.data,
+          isLoading: true,
+        }, () => {
+          setTimeout(() => {
+            this.setData({
+              ...this.data,
+              isLoading: false,
+              list: [...this.data.list, Math.random() * 100]
+            })
+          }, 500)
+        })
+      }
+    }).exec();
+  },
+
   onShow: function () {
     var that = this;
     wx.request({
-      url: app.getHeader()+'/getAllPark',
+      url: app.getHeader() + '/getAllPark',
       method: 'GET',
       header: {
         'content-type': 'application/json;charset=UTF-8' // 默认值
@@ -39,58 +70,62 @@ Page({
       }
     })
   },
-  inputBind: function(event) {
+  inputBind: function (event) {
     this.setData({
-        inputValue: event.detail.value
+      inputValue: event.detail.value
     })
     console.log('bindInput' + this.data.inputValue)
 
   },
-  suo: function(event) {
-       var that = this
+  suo: function (event) {
+    var that = this
 
-        /**
-         * keyword string 搜索关键词 ; 这里是 this.data.inputValue
-         * start int 分页起始值 ; 这里是 0
-         */
-        wx.request({
-			      url: app.getHeader()+'/getParkByParkName',
-            data: {
-                parkName: this.data.inputValue
-            },
-            method: 'GET',
-            success: function(res1) {
-                // console.log(res1.data)
-                // console.log(res1.data.parkName)
-                if (!that.data.inputValue) {
-                  //没有搜索词 友情提示
-                  wx.showToast({
-                      title: '请重新输入',
-                      duration: 2000,
-                  })
-				        } else if (res1.data==null) {
-                  //搜索词不存在 友情提示
-                  wx.showToast({
-                      title: '关键词不存在',
-                      duration: 2000,
-                  })
-				        }else{
-                  var a=[{feeScale: res1.data.feeScale, parkLocation: res1.data.parkLocation, parkName: res1.data.parkName, parkNumber: res1.data.parkNumber}]
-                  // var searchData = res.data
-                  that.setData({
-                     list:a
-                })
+    /**
+     * keyword string 搜索关键词 ; 这里是 this.data.inputValue
+     * start int 分页起始值 ; 这里是 0
+     */
+    wx.request({
+      url: app.getHeader() + '/getParkByParkName',
+      data: {
+        parkName: this.data.inputValue
+      },
+      method: 'GET',
+      success: function (res1) {
+        // console.log(res1.data)
+        // console.log(res1.data.parkName)
+        if (!that.data.inputValue) {
+          //没有搜索词 友情提示
+          wx.showToast({
+            title: '请重新输入',
+            duration: 2000,
+          })
+        } else if (res1.data == null) {
+          //搜索词不存在 友情提示
+          wx.showToast({
+            title: '关键词不存在',
+            duration: 2000,
+          })
+        } else {
+          var a = [{
+            feeScale: res1.data.feeScale,
+            parkLocation: res1.data.parkLocation,
+            parkName: res1.data.parkName,
+            parkNumber: res1.data.parkNumber
+          }]
+          // var searchData = res.data
+          that.setData({
+            list: a
+          })
 
-            }
-            },
-            
-            fail() {
-              console.log('获取错误')
-            }
-            
-        })
-        
-	
-}
+        }
+      },
+
+      fail() {
+        console.log('获取错误')
+      }
+
+    })
+
+
+  }
 })
-

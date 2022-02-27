@@ -180,10 +180,17 @@
   height: 5rpx;
 }
 
+.info-main {
+  background-color: rgb(250, 249, 249);
+  overflow: hidden;
+}
+
 .message-title2 {
-  padding: 30rpx;
-  font-size: 35rpx;
-  line-height: 1.5em;
+  padding: 12rpx 20rpx;
+  font-size: 32rpx;
+  margin: 8rpx 0;
+  color: #333;
+  border-bottom: 1rpx solid #eee;
 }
 
 .message-date-author {

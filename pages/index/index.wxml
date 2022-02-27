@@ -17,9 +17,11 @@
   </swiper>
   <view class="notice-main">
     <view class="message-title">医院信息</view>
-    <block wx:for="{{list}}" wx:key="list" wx:for-item="item">
-      <view class="message-title2">{{item}}</view>
-    </block>
+    <view class="info-main">
+      <view wx:for="{{list}}" wx:key="list" wx:for-item="item" wx:for-index="index" class="message-title2" data-data="{{item}}" bindtap="viewDetails">
+        {{index+1}}、{{item.title}}
+      </view>
+    </view>
     <view wx:if="{{isLoading}}">加载中...</view>
   </view>
 </view>

@@ -1,3 +1,4 @@
+const {request} = require('../../utils/request');
 var app = getApp();
 Page({
   data: {
@@ -60,7 +61,7 @@ Page({
       })
       return;
     }
-    
+
     const regAge = /^[1-9][0-9]{0,2}$/
     if (!regAge.test(age)) {
       wx.showToast({
@@ -79,45 +80,50 @@ Page({
       }
     })
   },
-  
+
   /**
    * 登录
    * @param {*} e 
    */
-  UserLogin: function (e) {
+  UserLogin: async function (e) {
     var json = JSON.stringify(e.detail.value)
     console.log("userlogin:" + json)
-    wx.request({
-      url: app.getHeader() + '/userLogin', // 拼接接口地址
-      method: 'post',
-      data: json,
-      contentType: 'application/json',
-      success(res) {
-        console.log('res.data:' + res.data)
-        app.globalData.uid = res.data
-        if (res.data != "failure") {
-          wx.showToast({
-              title: '登录成功',
-              icon: 'success',
-              duration: 2000
-            }),
-            wx.switchTab({
-              url: '../index/index',
-            })
-          // setTimeout(function () {
-          //   wx.navigateBack({
-          //     delta: 2
-          //   })
-          // }, 1000)
-        } else {
-          wx.showToast({
-            title: '登录失败',
-            duration: 1000,
-            icon: 'none'
-          })
-        }
-      }
+    console.log(request);
+    await request({
+      url: 'http://localhost:3000/api',
+      method: 'get'
     })
+    // wx.request({
+    //   url: app.getHeader() + '/userLogin', // 拼接接口地址
+    //   method: 'post',
+    //   data: json,
+    //   contentType: 'application/json',
+    //   success(res) {
+    //     console.log('res.data:' + res.data)
+    //     app.globalData.uid = res.data
+    //     if (res.data != "failure") {
+    //       wx.showToast({
+    //           title: '登录成功',
+    //           icon: 'success',
+    //           duration: 2000
+    //         }),
+    //         wx.switchTab({
+    //           url: '../index/index',
+    //         })
+    //       // setTimeout(function () {
+    //       //   wx.navigateBack({
+    //       //     delta: 2
+    //       //   })
+    //       // }, 1000)
+    //     } else {
+    //       wx.showToast({
+    //         title: '登录失败',
+    //         duration: 1000,
+    //         icon: 'none'
+    //       })
+    //     }
+    //   }
+    // })
   },
   onReady: function () {
     // 页面渲染完成

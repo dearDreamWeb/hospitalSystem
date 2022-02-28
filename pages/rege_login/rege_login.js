@@ -1,4 +1,6 @@
-const {request} = require('../../utils/request');
+const {
+  request
+} = require('../../utils/request');
 var app = getApp();
 Page({
   data: {
@@ -85,14 +87,38 @@ Page({
    * 登录
    * @param {*} e 
    */
-  UserLogin: async function (e) {
-    var json = JSON.stringify(e.detail.value)
-    console.log("userlogin:" + json)
-    console.log(request);
-    await request({
-      url: 'http://localhost:3000/api',
-      method: 'get'
+  UserLogin: function (e) {
+    console.log(e);
+    const {
+      phone_number
+    } = e.detail.value;
+    wx.setStorage({
+      key: "userInfo",
+      data: {
+        userInfo: {
+          phone_number
+        }
+      }
     })
+    app.globalData.userInfo = {
+      phone_number
+    }
+    wx.showToast({
+      title: '登录成功',
+      success: () => {
+        setTimeout(() => {
+          wx.switchTab({
+            url: '../index/index?id=123'
+          })
+        }, 1000)
+      }
+    })
+
+    // await request({
+    //   url: 'http://localhost:3000/api',
+    //   method: 'get'
+    // })
+
     // wx.request({
     //   url: app.getHeader() + '/userLogin', // 拼接接口地址
     //   method: 'post',

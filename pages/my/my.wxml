@@ -1,14 +1,14 @@
 <!--logs.wxml-->
 <view class='enter'>
   <view class='avatar'>
-    <image src="{{userInfo.avatarUrl}}" />
+    <image src="{{userInfo.avatarUrl || '../../images/my.png'}}" />
   </view>
   <view class='info'>
     <view class='name'>{{username}}</view>
   </view>
-  <!-- <view class='money'>
+  <view class='money'>
     <view class='name'>余额:¥ {{money}}</view>
-  </view> -->
+  </view>
 </view>
 <view class="main">  
     <view class="my-items my-info">
@@ -49,7 +49,7 @@
     </view>
   <view class="my-items contact-service">
     <text class="iconfont icon-jiaofei"></text>
-    <navigator url="../my_payments/my_payments"><text class="word">车库缴费</text></navigator>
+    <navigator url="../my_payments/my_payments"><text class="word">费用充值</text></navigator>
     <text class="iconfont icon-jiantou"></text>
   </view>
 

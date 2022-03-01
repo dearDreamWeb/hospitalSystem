@@ -96,19 +96,29 @@ Page({
       key: "userInfo",
       data: {
         userInfo: {
-          phone_number
+          "phone_number": "123123123",
+          "name": "吴杰超",
+          "phone_number": "19123452341",
+          "pwd": "123456",
+          "sex": "男",
+          "age": "22"
         }
       }
     })
     app.globalData.userInfo = {
-      phone_number
+      "phone_number": "123123123",
+      "name": "吴杰超",
+      "phone_number": "19123452341",
+      "pwd": "123456",
+      "sex": "男",
+      "age": "22"
     }
     wx.showToast({
       title: '登录成功',
       success: () => {
         setTimeout(() => {
           wx.switchTab({
-            url: '../index/index?id=123'
+            url: '../index/index'
           })
         }, 1000)
       }

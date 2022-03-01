@@ -9,7 +9,8 @@
     "pages/my_payments/my_payments",
     "pages/rent/rent",
     "pages/community/message/message/message",
-    "pages/coronavirusNews/coronavirusNews"
+    "pages/coronavirusNews/coronavirusNews",
+    "pages/myInfo/myInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

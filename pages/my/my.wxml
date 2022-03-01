@@ -1,7 +1,7 @@
 <!--logs.wxml-->
 <view class='enter'>
   <view class='avatar'>
-    <image src="{{userInfo.avatarUrl || '../../images/my2.png'}}" />
+    <image src="{{userInfo.avatarUrl || '../../images/my2.png'}}"  bindtap="jumpToMyInfo"/>
   </view>
   <view class='info'>
     <view class='name'>{{username}}</view>

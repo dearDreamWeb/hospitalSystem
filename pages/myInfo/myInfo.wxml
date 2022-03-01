@@ -1,0 +1,35 @@
+<view>
+  <form bindsubmit="updateUserInfo">
+    <view class="main">
+      <view class="profile-items">
+        <text class="word">用户名</text>
+        <input name="name" value="{{userInfo.name}}" maxlength="6" />
+      </view>
+
+      <view class="profile-items">
+        <text class="word">手机号</text>
+        <input name="phone_number" value="{{userInfo.phone_number}}" maxlength="11" type="number" maxlength="11" />
+      </view>
+      <view class="profile-items">
+        <text class="word">密码</text>
+        <input type="password" value="{{userInfo.pwd}}" name="pwd" maxlength="11" />
+      </view>
+      <view class="profile-items gender">
+        <text class="word">性别</text>
+        <radio-group name="sex">
+          <label>
+            <radio color="#54afc5" value="男" checked="{{userInfo.sex ==='男'}}" />男
+          </label>
+          <label>
+            <radio color="#54afc5" value="女" checked="{{userInfo.sex ==='女'}}" />女
+          </label>
+        </radio-group>
+      </view>
+      <view class="profile-items">
+        <text class="word">年龄</text>
+        <input name="age" value="{{userInfo.age}}" maxlength="3" type="number" />
+      </view>
+    </view>
+    <button form-type="submit"> 确认修改 </button>
+  </form>
+</view>

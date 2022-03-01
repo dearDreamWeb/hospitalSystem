@@ -34,7 +34,7 @@ Page({
     duration: 1000,
     inputValue: '',
     isLoading: false,
-    list: [infoExample, infoExample, infoExample, infoExample, infoExample, infoExample, infoExample]
+    list: [infoExample, infoExample, infoExample, infoExample, infoExample, infoExample, infoExample, infoExample]
   },
   //事件处理函数
   bindViewTap: function () {
@@ -42,36 +42,57 @@ Page({
       url: '../logs/logs'
     })
   },
-  /**
-   * 监听滚动事件加载信息
-   * @param {*} e 
-   */
-  onPageScroll: function (e) {
+  onReachBottom:function(){
     const {
       isLoading
     } = this.data;
     if (isLoading) {
       return;
     }
-    const query = wx.createSelectorQuery();
-    query.select('#page').boundingClientRect((rect) => {
-      const windowHeight = wx.getSystemInfoSync().windowHeight;
-      if (windowHeight + e.scrollTop >= rect.height) {
+    this.setData({
+      ...this.data,
+      isLoading: true,
+    }, () => {
+      setTimeout(() => {
         this.setData({
           ...this.data,
-          isLoading: true,
-        }, () => {
-          setTimeout(() => {
-            this.setData({
-              ...this.data,
-              isLoading: false,
-              list: [...this.data.list, infoExample]
-            })
-          }, 500)
+          isLoading: false,
+          list: [...this.data.list, infoExample, infoExample, infoExample, infoExample]
         })
-      }
-    }).exec();
+      }, 500)
+    })
   },
+  /**
+   * 监听滚动事件加载信息
+   * @param {*} e 
+   */
+  // onPageScroll: function (e) {
+  //   const {
+  //     isLoading
+  //   } = this.data;
+  //   if (isLoading) {
+  //     return;
+  //   }
+  //   const query = wx.createSelectorQuery();
+  //   query.select('#page').boundingClientRect((rect) => {
+  //     const windowHeight = wx.getSystemInfoSync().windowHeight;
+  //     if (windowHeight + e.scrollTop >= rect.height - 96) {
+  //       console.log(windowHeight, e.scrollTop, rect.height);
+  //       this.setData({
+  //         ...this.data,
+  //         isLoading: true,
+  //       }, () => {
+  //         setTimeout(() => {
+  //           this.setData({
+  //             ...this.data,
+  //             isLoading: false,
+  //             list: [...this.data.list, infoExample]
+  //           })
+  //         }, 500)
+  //       })
+  //     }
+  //   }).exec();
+  // },
 
   /**
    * 查看详情

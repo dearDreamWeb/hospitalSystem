@@ -1,38 +1,19 @@
 //app.js
 var app = getApp()
 App({
-  data:{
-    users: [   
-    ]
-    
+  data: {
+    users: []
+
   },
 
-  onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    // var _this = this
-    // var logs = wx.getStorageSync('logs') || []
-    // logs.unshift(Date.now())
-    // wx.setStorageSync('logs', logs);
-    // wx.login({
-    //   success: res => {
-    //     wx.request({
-    //       url: _this.getHeader()+'/getOpenid', //接口地址
-    //       data: { code: res.code },
-    //       header: {
-    //         'content-type': 'application/json' //默认值
-    //       },
-    //       success: function (res) {
-    //         _this.globalData.openid = res.data.openid;
-    //         console.log("openid:" + _this.globalData.openid)
-    //       },fail:function(res){
-    //         console.log("error:" + res)
-    //       }
-    //     })
-    //   }
-    //   , fail(err) {
-    //     console.log('wx失败' + err)
-    //   }
-    // })
+  onLaunch: async function () {
+    const storage = await wx.getStorage({
+      key: 'userInfo'
+    });
+    const {
+      userInfo
+    } = storage.data;
+    this.globalData.userInfo = userInfo;
   },
   getUserInfo: function (cb) {
     var that = this
@@ -52,18 +33,18 @@ App({
       })
     }
   },
-  globalData:{
-    userInfo:null,
-    messages :[],
-    uid:'',
+  globalData: {
+    userInfo: null,
+    messages: [],
+    uid: '',
     protocol: "http://",
     host: "localhost",
     port: 8080,
-    openid: '5a787cfc9376cdcfd80b0ac54e756a17',//用户唯一标志ids
+    openid: '5a787cfc9376cdcfd80b0ac54e756a17', //用户唯一标志ids
   },
   /**
-* 封装请求头
-*/
+   * 封装请求头
+   */
   getHeader() {
     var protocol = this.globalData.protocol
     var host = this.globalData.host

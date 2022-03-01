@@ -5,35 +5,12 @@ Page({
   
   },
   onShow: function () {
-    // var that = this
-    // console.log('notices.js----->openid:' + app.globalData.openid)
-    // uid = app.globalData.uid
-    // console.log("uid:" + app.globalData.uid)
-    // if (app.globalData.uid == '') {
-    //   wx.showToast({
-    //     title: '请先注册或登录',
-    //     duration: 1000,
-    //     icon: 'none'
-    //   })
-    // } else {
-    //   wx.request({
-    //     url: app.getHeader() + '/getAllRent',
-    //     method: 'POST',
-    //     header: {
-    //       'content-type': 'application/x-www-form-urlencoded;charset=utf-8'//
-    //     },
-    //     data: {},
-    //     success: function (res) {
-    //       console.log(res.data)
-    //       that.setData({
-    //         list: res.data
-    //       })
-    //     },
-    //     fail() {
-    //       console.log('出错啦')
-    //     }
-    //   })
-    // }
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+      })
+    }
   },
   onReady: function () {
     // 页面渲染完成

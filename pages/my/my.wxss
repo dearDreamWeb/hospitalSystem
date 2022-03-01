@@ -1,6 +1,7 @@
 page {
   background-color: #f0f0f0;
 }
+
 .enter {
   height: 160rpx;
   display: flex;
@@ -9,26 +10,35 @@ page {
   margin: 50rpx 0 20rpx 0;
   background-color: white;
 }
-.avatar{
+
+.avatar {
   padding-right: 40rpx;
-  display:flex;
+  display: flex;
   align-items: center;
 }
+
 .avatar image {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 50%
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
 }
+
 .info {
   width: 300rpx;
   display: flex;
   align-items: center;
 }
+
 .money {
   width: 200rpx;
   display: flex;
-  
 }
+
+.money-text {
+  color: #f40;
+}
+
 button.complect {
   width: 180rpx;
   line-height: 1em;
@@ -36,14 +46,16 @@ button.complect {
   background-color: #54afc5;
   color: white;
   font-size: 30rpx;
-  
+
 }
+
 .main {
   display: flex;
   flex-direction: column;
   margin: 20rpx 0;
   background-color: white
 }
+
 .my-items {
   margin-left: 30rpx;
   border-bottom: 1rpx solid #f0f0f0;
@@ -52,20 +64,33 @@ button.complect {
   display: flex;
   align-items: center;
 }
+
 .my-items navigator {
-  width:560rpx
-} 
+  width: 560rpx
+}
+
 .my-items .iconfont {
   font-size: 36rpx;
   padding-right: 30rpx;
   color: #54afc5;
 }
+
+.my-items .iconfont:nth-of-type(2) {
+  margin-left: auto;
+}
+
+.contact-service .word {
+  width: 100%;
+}
+
 .my-items .icon-jiantou {
   color: #54afc5;
 }
+
 .service {
   background-color: white;
 }
+
 .my-suggests,
 .contact-service {
   border: none;

@@ -90,24 +90,30 @@ Page({
   },
 
   onShow: function () {
-    var that = this;
-    wx.request({
-      url: app.getHeader() + '/getAllPark',
-      method: 'GET',
-      header: {
-        'content-type': 'application/json;charset=UTF-8' // 默认值
-      },
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          list: res.data,
-          //gl: app.getHeader() +'/img'
-        })
-      },
-      fail() {
-        console.log('获取错误')
-      }
-    })
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+    // var that = this;
+    // wx.request({
+    //   url: app.getHeader() + '/getAllPark',
+    //   method: 'GET',
+    //   header: {
+    //     'content-type': 'application/json;charset=UTF-8' // 默认值
+    //   },
+    //   success: function (res) {
+    //     console.log(res);
+    //     that.setData({
+    //       list: res.data,
+    //       //gl: app.getHeader() +'/img'
+    //     })
+    //   },
+    //   fail() {
+    //     console.log('获取错误')
+    //   }
+    // })
   },
   inputBind: function (event) {
     this.setData({

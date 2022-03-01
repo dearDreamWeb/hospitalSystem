@@ -6,6 +6,12 @@ Page({
     money: 0
   },
   onShow: async function () {
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 3
+      })
+    }
     const storage = await wx.getStorage({
       key: 'userInfo'
     });
@@ -48,5 +54,27 @@ Page({
     //     console.log('获取错误')
     //   }
     // })
+  },
+  recharge: () => {
+    wx.showModal({
+      title: '充值',
+      editable: true,
+      placeholderText: '请输入充值金额',
+      success(res) {
+        if (res.confirm) {
+          const {
+            content
+          } = res;
+          const reg = /^[1-9][0-9]{0,}$/;
+          if (!reg.test(content)) {
+            wx.showToast({
+              title: '输入金额错误',
+              icon: 'error'
+            })
+            return;
+          }
+        }
+      }
+    })
   }
 })

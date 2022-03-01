@@ -6,33 +6,33 @@ App({
     ]
     
   },
+
   onLaunch: function () {
     //调用API从本地缓存中获取数据
-    var _this = this
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs);
-    wx.login({
-      success: res => {
-        console.log('qwerty')
-        wx.request({
-          url: _this.getHeader()+'/getOpenid', //接口地址
-          data: { code: res.code },
-          header: {
-            'content-type': 'application/json' //默认值
-          },
-          success: function (res) {
-            _this.globalData.openid = res.data.openid;
-            console.log("openid:" + _this.globalData.openid)
-          },fail:function(res){
-            console.log("error:" + res)
-          }
-        })
-      }
-      , fail(err) {
-        console.log('wx失败' + err)
-      }
-    })
+    // var _this = this
+    // var logs = wx.getStorageSync('logs') || []
+    // logs.unshift(Date.now())
+    // wx.setStorageSync('logs', logs);
+    // wx.login({
+    //   success: res => {
+    //     wx.request({
+    //       url: _this.getHeader()+'/getOpenid', //接口地址
+    //       data: { code: res.code },
+    //       header: {
+    //         'content-type': 'application/json' //默认值
+    //       },
+    //       success: function (res) {
+    //         _this.globalData.openid = res.data.openid;
+    //         console.log("openid:" + _this.globalData.openid)
+    //       },fail:function(res){
+    //         console.log("error:" + res)
+    //       }
+    //     })
+    //   }
+    //   , fail(err) {
+    //     console.log('wx失败' + err)
+    //   }
+    // })
   },
   getUserInfo: function (cb) {
     var that = this

@@ -1,7 +1,7 @@
 {
   "pages": [
+    "pages/appointment/appointment",
     "pages/index/index",
-    "pages/park/park",
     "pages/coronavirus/coronavirus",
     "pages/my/my",
     "pages/rege_login/rege_login",
@@ -28,7 +28,7 @@
         "selectedIconPath": "images/park1.png"
       },
       {
-        "pagePath": "pages/park/park",
+        "pagePath": "pages/appointment/appointment",
         "text": "预约就诊",
         "iconPath": "images/appoint.png",
         "selectedIconPath": "images/appoint1.png"

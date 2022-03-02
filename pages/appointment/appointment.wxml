@@ -1,0 +1,22 @@
+<scroll-view scroll-y="true" class="page-body">
+    <view class="nav_section">
+        <view wx:if="{{list.length != 0}}" class='appointment-main'>
+            <view class="nav-main">
+                <block wx:for="{{list}}" wx:key="list" wx:for-item="item" wx:for-index="index">
+                    <view data-index="{{index}}" bindtap="changeSelected" class="nav-item {{selected===index?'nav-selected':''}}">
+                        {{item.text}}
+                    </view>
+                </block>
+            </view>
+            <view class="sub-nav">
+                <view wx:for="{{list[selected].children}}" wx:for-item="subItem" class="sub-nav-item">
+                    <view>{{subItem.text}}</view>
+                    <view>></view>
+                </view>
+            </view>
+        </view>
+        <block wx:else>
+            <view class="screen"> 暂无门诊 </view>
+        </block>
+    </view>
+</scroll-view>

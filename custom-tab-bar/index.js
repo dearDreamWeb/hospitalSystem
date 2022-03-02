@@ -12,7 +12,7 @@ Component({
           "selectedIconPath": "../images/park1.png"
         },
         {
-          "pagePath": "/pages/park/park",
+          "pagePath": "/pages/appointment/appointment",
           "text": "预约就诊",
           "iconPath": "../images/appoint.png",
           "selectedIconPath": "../images/appoint1.png"
@@ -45,7 +45,7 @@ Component({
           "selectedIconPath": "../images/park1.png"
         },
         {
-          "pagePath": "pages/park/park",
+          "pagePath": "pages/appointment/appointment",
           "text": "预约就诊",
           "iconPath": "../images/appoint.png",
           "selectedIconPath": "../images/appoint1.png"

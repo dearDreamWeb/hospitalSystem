@@ -1,0 +1,36 @@
+.appointment-main {
+    display: flex;
+}
+
+.nav-main {
+    background-color: #eee;
+}
+
+.nav-item {
+    position: relative;
+    padding: 24rpx 20rpx;
+}
+
+.nav-selected {
+    background-color: #fff;
+}
+
+.nav-selected::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: -2px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background-color: rgb(211, 56, 56);
+}
+
+.sub-nav {
+    flex-grow: 1;
+}
+.sub-nav-item{
+    display: flex;
+    padding: 24rpx 20rpx;
+    justify-content: space-between;
+}

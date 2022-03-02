@@ -42,7 +42,8 @@ Page({
       url: '../logs/logs'
     })
   },
-  onReachBottom:function(){
+
+  onReachBottom: function () {
     const {
       isLoading
     } = this.data;
@@ -62,6 +63,7 @@ Page({
       }, 500)
     })
   },
+
   /**
    * 监听滚动事件加载信息
    * @param {*} e 

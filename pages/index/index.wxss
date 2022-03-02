@@ -121,7 +121,9 @@
   margin: 0 0 30rpx 0;
 
 }
-
+.notice-main{
+  overflow: hidden;
+}
 .notice-head {
   display: flex;
   margin: 20rpx 0;
@@ -183,6 +185,7 @@
 }
 
 .info-main {
+  padding-bottom: 48px;
   background-color: rgb(250, 249, 249);
   overflow: hidden;
 }

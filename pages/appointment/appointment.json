@@ -1,7 +1,7 @@
 {
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "车位预约",
+  "navigationBarTitleText": "预约就诊",
   "backgroundTextStyle": "dark",
   "enablePullDownRefresh": true
 }

@@ -15,6 +15,7 @@
                 </view>
             </view>
         </view>
+        
         <block wx:else>
             <view class="screen"> 暂无门诊 </view>
         </block>

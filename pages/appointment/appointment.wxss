@@ -34,3 +34,7 @@
     padding: 24rpx 20rpx;
     justify-content: space-between;
 }
+.screen{
+    text-align: center;
+    font-size: 48rpx;
+}

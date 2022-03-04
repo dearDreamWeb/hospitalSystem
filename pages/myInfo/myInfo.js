@@ -18,7 +18,7 @@ Page({
       phone_number,
       pwd,
       sex,
-      age
+      age,
     } = e.detail.value;
 
     if (!name || !phone_number || !pwd || !sex || !age) {
@@ -55,6 +55,29 @@ Page({
             url: '../index/index'
           })
         }, 1000)
+      }
+    })
+  },
+
+  /**
+   * 上传头像
+   */
+  uploadAvatar: () => {
+    wx.chooseImage({
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            'user': 'test'
+          },
+          success(res) {
+            const data = res.data
+            //do something
+          }
+        })
       }
     })
   },

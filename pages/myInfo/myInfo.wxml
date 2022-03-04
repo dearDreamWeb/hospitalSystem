@@ -29,6 +29,10 @@
         <text class="word">年龄</text>
         <input name="age" value="{{userInfo.age}}" maxlength="3" type="number" />
       </view>
+      <view class="avatar-box" bindtap="uploadAvatar">
+        <text class="word">头像</text>
+        <view class="update-avatar {{!userInfo.avatarUrl?'no-avatar':''}}" style="background-image: url({{userInfo.avatarUrl}});"></view>
+      </view>
     </view>
     <button form-type="submit"> 确认修改 </button>
   </form>

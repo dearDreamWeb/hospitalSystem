@@ -104,3 +104,28 @@ button {
   width: 48rpx;
   height:45rpx;
 } 
+
+.avatar-box {
+  width: 100%;
+  padding: 50rpx 0;
+  margin-left: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.update-avatar {
+  position: relative;
+  text-align: center;
+  width: 250rpx;
+  height: 250rpx;
+  line-height: 250rpx;
+  border: 1px dashed #ccc;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.update-avatar.no-avatar::after{
+  content: '+';
+  font-size: 100rpx;
+  font-weight: 100;
+  color: #ccc;
+}

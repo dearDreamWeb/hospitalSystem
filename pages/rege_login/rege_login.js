@@ -10,8 +10,8 @@ Page({
       curBdIndex: 1,
       defaultType: true,
       passwordType: true,
-    }
-
+    },
+    avatarUrl: ''
   },
   //defaultType：眼睛状态   passwordType：密码可见与否状态
   eyeStatus: function () {
@@ -101,7 +101,8 @@ Page({
           "phone_number": "19123452341",
           "pwd": "123456",
           "sex": "男",
-          "age": "22"
+          "age": "22",
+          avatarUrl:''
         }
       }
     })
@@ -111,7 +112,8 @@ Page({
       "phone_number": "19123452341",
       "pwd": "123456",
       "sex": "男",
-      "age": "22"
+      "age": "22",
+      avatarUrl:''
     }
     wx.showToast({
       title: '登录成功',

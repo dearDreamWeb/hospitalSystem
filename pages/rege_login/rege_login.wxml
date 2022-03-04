@@ -44,6 +44,10 @@
 						<text class="word">年龄</text>
 						<input name="age" maxlength="3" type="number" />
 					</view>
+					<view class="avatar-box" bindtap="uploadAvatar">
+						<text class="word">头像</text>
+						<view class="update-avatar {{!avatarUrl?'no-avatar':''}}" style="background-image: url({{avatarUrl}});"></view>
+					</view>
 				</view>
 				<button form-type="submit"> 注册 </button>
 			</form>

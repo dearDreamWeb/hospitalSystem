@@ -1,0 +1,20 @@
+<view class="doctor-main">
+  <view class="title">预约日期选择</view>
+  <view class="date-main">
+    <block wx:for="{{dateArr}}" wx:key="dateArr" wx:for-item="item" wx:for-index="index">
+      <view class="date-item {{index ===dateSelected?'date-selected':''}}" bindtap="dateSelectedHandler" data-index="{{index}}">
+        <view>{{item.week}}</view>
+        <view>{{item.dateText}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="title">预约医生</view>
+  <block wx:for="{{doctorList}}" wx:key="doctorList" wx:for-item="doctorItem">
+    <view class="docotr-item">
+      <image class="avatar" src="{{doctorItem.avatarUrl || '../../images/doctor.png'}}"></image>
+      <view>
+        <view>{{doctorItem.name}}</view>
+      </view>
+    </view>
+  </block>
+</view>

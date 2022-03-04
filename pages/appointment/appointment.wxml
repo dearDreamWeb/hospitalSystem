@@ -9,7 +9,7 @@
                 </block>
             </view>
             <view class="sub-nav">
-                <view wx:for="{{list[selected].children}}" wx:for-item="subItem" class="sub-nav-item">
+                <view wx:for="{{list[selected].children}}" wx:for-item="subItem" class="sub-nav-item" data-data="{{subItem}}" bindtap="jumpToDoctor">
                     <view>{{subItem.text}}</view>
                     <view>></view>
                 </view>

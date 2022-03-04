@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/doctors/doctors",
     "pages/appointment/appointment",
     "pages/index/index",
     "pages/coronavirus/coronavirus",
@@ -10,7 +11,8 @@
     "pages/rent/rent",
     "pages/community/message/message/message",
     "pages/coronavirusNews/coronavirusNews",
-    "pages/myInfo/myInfo"
+    "pages/myInfo/myInfo",
+    "pages/doctors"
   ],
   "window": {
     "backgroundTextStyle": "light",

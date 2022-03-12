@@ -23,7 +23,7 @@
 
 					<view class="profile-items">
 						<text class="word">手机号</text>
-						<input name="phone_number" maxlength="11" type="number" maxlength="11" />
+						<input name="phone" maxlength="11" type="number" maxlength="11" />
 					</view>
 					<view class="profile-items">
 						<text class="word">密码</text>
@@ -44,12 +44,12 @@
 						<text class="word">年龄</text>
 						<input name="age" maxlength="3" type="number" />
 					</view>
-					<view class="avatar-box" bindtap="uploadAvatar">
+					<view class="avatar-box" bindtap="uploadAvatarHandle">
 						<text class="word">头像</text>
-						<view class="update-avatar {{!avatarUrl?'no-avatar':''}}" style="background-image: url({{avatarUrl}});"></view>
+						<view class="update-avatar {{!showAvatarUrl?'no-avatar':''}}" style="background-image: url({{showAvatarUrl}});"></view>
 					</view>
+					<button form-type="submit"> 注册 </button>
 				</view>
-				<button form-type="submit"> 注册 </button>
 			</form>
 		</view>
 		<!-- 登录 -->
@@ -58,7 +58,7 @@
 				<view class="main">
 					<view class="profile-items">
 						<text class="word">手机号</text>
-						<input name="phone_number" maxlength="11" placeholder="请输入注册手机号" type="number" style='font-size:34rpx' />
+						<input name="phone" maxlength="11" placeholder="请输入注册手机号" type="number" style='font-size:34rpx' />
 					</view>
 					<view class='parentstyle '>
 						<view class='profile-items'>
@@ -67,8 +67,19 @@
 							<image src='{{defaultType? "../../images/eye_unsee.png": "../../images/eye_see.png"}}' class='imageStyle' bindtap='eyeStatus'></image>
 						</view>
 					</view>
+					<view class="profile-items gender">
+						<text class="word">类型</text>
+						<radio-group name="userType">
+							<label>
+								<radio color="#54afc5" value="user" />普通用户
+							</label>
+							<label>
+								<radio color="#54afc5" value="doctor" />医生
+							</label>
+						</radio-group>
+					</view>
+					<button form-type="submit"> 登录 </button>
 				</view>
-				<button form-type="submit"> 登录 </button>
 			</form>
 		</view>
 	</view>

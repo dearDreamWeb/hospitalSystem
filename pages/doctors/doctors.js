@@ -8,7 +8,31 @@ Page({
     clinicInfo: {}, // 门诊信息
     dateArr: [], // 日期列表
     dateSelected: 0, // 日期选择的索引
-    doctorList: [{name:'王大力',avatarUrl:''}], // 医生列表
+    doctorList: [{
+      name: '王大力',
+      avatarUrl: '',
+      department: '外科',
+      level: '主治医师',
+      specialty: '邻学医床经验丰富，十余年之久。'
+    }, {
+      name: '王大力',
+      avatarUrl: '',
+      department: '外科',
+      level: '主治医师',
+      specialty: '邻学医床经验丰富，十余年之久。'
+    }, {
+      name: '王大力',
+      avatarUrl: '',
+      department: '外科',
+      level: '主治医师',
+      specialty: '邻学医床经验丰富，十余年之久。'
+    }, {
+      name: '王大力',
+      avatarUrl: '',
+      department: '外科',
+      level: '主治医师',
+      specialty: '邻学医床经验丰富，十余年之久。'
+    }], // 医生列表
   },
 
   /**
@@ -22,7 +46,7 @@ Page({
     const day = new Date().getTime();
     const dayTime = 1000 * 60 * 60 * 24;
     for (let i = 0; i < 7; i++) {
-      arr.push(this.formatDate(day + dayTime * i))
+      arr.push(this.formatDate(day + dayTime * (i + 1)))
     }
 
     this.setData({
@@ -40,7 +64,7 @@ Page({
     // const timeStamp
     const weekChineseArr = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
     const week = weekChineseArr[new Date(date).getDay()];
-    const dateText = new Date(date).toLocaleDateString();
+    const dateText = new Date(date).toLocaleDateString().replaceAll('/', '-');
     return {
       week,
       dateText

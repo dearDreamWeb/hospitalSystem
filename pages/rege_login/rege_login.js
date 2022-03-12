@@ -1,17 +1,23 @@
 const {
-  request
-} = require('../../utils/request');
+  register,
+  login,
+} = require('../../api/index');
+const {
+  uploadAvatar
+} = require('../../utils/request')
+
 var app = getApp();
 Page({
   data: {
     // tab 切换
     tabArr: {
-      curHdIndex: 1,
-      curBdIndex: 1,
+      curHdIndex: 2,
+      curBdIndex: 2,
       defaultType: true,
       passwordType: true,
     },
-    avatarUrl: ''
+    avatarUrl: '',
+    showAvatarUrl: ''
   },
   //defaultType：眼睛状态   passwordType：密码可见与否状态
   eyeStatus: function () {
@@ -32,21 +38,40 @@ Page({
     console.log('onLoad');
 
   },
+
+  /**
+   * 头像上传
+   */
+  uploadAvatarHandle: async function () {
+    const res = await uploadAvatar();
+    if (!res.success) {
+      wx.showToast({
+        title: '上传失败',
+      })
+      return;
+    }
+
+    this.setData({
+      ...this.data,
+      avatarUrl: res.data.name,
+      showAvatarUrl: res.data.absolutePath
+    })
+  },
   /**
    * 注册
    * @param {*} e 
    */
-  RegisterInfo: function (e) {
+  RegisterInfo: async function (e) {
     console.log("RegisterInfojson:" + e.detail.value)
     const {
       name,
-      phone_number,
+      phone,
       pwd,
       sex,
       age
     } = e.detail.value;
 
-    if (!name || !phone_number || !pwd || !sex || !age) {
+    if (!name || !phone || !pwd || !sex || !age) {
       wx.showToast({
         title: '请完善个人信息',
         icon: 'error',
@@ -55,7 +80,7 @@ Page({
       return;
     }
     const reg = /^1[0-9]{10}$/;
-    if (!reg.test(phone_number)) {
+    if (!reg.test(phone)) {
       wx.showToast({
         title: '手机号输入错误',
         icon: 'error',
@@ -73,7 +98,23 @@ Page({
       })
       return;
     }
-
+    const res = await register({
+      name,
+      phone,
+      pwd,
+      sex,
+      age,
+      avatarUrl: this.data.avatarUrl
+    })
+    if (!res.success) {
+      wx.showToast({
+        title: res.message,
+      })
+      return;
+    }
+    wx.showToast({
+      title: '注册成功',
+    })
     this.setData({
       tabArr: {
         ...this.tabArr,
@@ -87,81 +128,51 @@ Page({
    * 登录
    * @param {*} e 
    */
-  UserLogin: function (e) {
-    console.log(e);
+  UserLogin: async function (e) {
     const {
-      phone_number
+      phone,
+      pwd,
+      userType
     } = e.detail.value;
-    wx.setStorage({
-      key: "userInfo",
-      data: {
-        userInfo: {
-          "phone_number": "123123123",
-          "name": "吴杰超",
-          "phone_number": "19123452341",
-          "pwd": "123456",
-          "sex": "男",
-          "age": "22",
-          avatarUrl:''
-        }
-      }
-    })
-    app.globalData.userInfo = {
-      "phone_number": "123123123",
-      "name": "吴杰超",
-      "phone_number": "19123452341",
-      "pwd": "123456",
-      "sex": "男",
-      "age": "22",
-      avatarUrl:''
+    console.log(e.detail.value);
+    if (!userType) {
+      wx.showToast({
+        title: '用户类型未选择',
+      })
+      return;
     }
-    wx.showToast({
-      title: '登录成功',
-      success: () => {
-        setTimeout(() => {
-          wx.switchTab({
-            url: '../index/index'
-          })
-        }, 1000)
+
+    if (userType === 'user') {
+      const res = await login({
+        phone,
+        pwd
+      })
+      if (!res.success) {
+        wx.showToast({
+          title: res.message,
+        })
+        return;
       }
-    })
+      const {
+        token,
+        userInfo
+      } = res.data;
+      wx.setStorageSync('userInfo', userInfo);
+      wx.setStorageSync('token', token);
+      app.globalData.userInfo = userInfo
+      app.globalData.token = token
+      wx.showToast({
+        title: '登录成功',
+        success: () => {
+          setTimeout(() => {
+            wx.switchTab({
+              url: '../index/index'
+            })
+          }, 1000)
+        }
+      })
+    }
 
-    // await request({
-    //   url: 'http://localhost:3000/api',
-    //   method: 'get'
-    // })
-
-    // wx.request({
-    //   url: app.getHeader() + '/userLogin', // 拼接接口地址
-    //   method: 'post',
-    //   data: json,
-    //   contentType: 'application/json',
-    //   success(res) {
-    //     console.log('res.data:' + res.data)
-    //     app.globalData.uid = res.data
-    //     if (res.data != "failure") {
-    //       wx.showToast({
-    //           title: '登录成功',
-    //           icon: 'success',
-    //           duration: 2000
-    //         }),
-    //         wx.switchTab({
-    //           url: '../index/index',
-    //         })
-    //       // setTimeout(function () {
-    //       //   wx.navigateBack({
-    //       //     delta: 2
-    //       //   })
-    //       // }, 1000)
-    //     } else {
-    //       wx.showToast({
-    //         title: '登录失败',
-    //         duration: 1000,
-    //         icon: 'none'
-    //       })
-    //     }
-    //   }
-    // })
   },
   onReady: function () {
     // 页面渲染完成

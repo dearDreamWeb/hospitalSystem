@@ -7,13 +7,18 @@ App({
   },
 
   onLaunch: async function () {
-    const storage = await wx.getStorage({
-      key: 'userInfo'
-    });
-    const {
-      userInfo
-    } = storage.data;
+    const userInfo = wx.getStorageSync('userInfo');
+    const token = wx.getStorageSync('token');
     this.globalData.userInfo = userInfo;
+    this.globalData.token = token;
+    if (!userInfo || !userInfo.id || !token) {
+      wx.showToast({
+        title: '请登录',
+      })
+      wx.navigateTo({
+        url: '/pages/rege_login/rege_login',
+      })
+    }
   },
   getUserInfo: function (cb) {
     var that = this
@@ -35,12 +40,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    messages: [],
-    uid: '',
-    protocol: "http://",
-    host: "localhost",
-    port: 8080,
-    openid: '5a787cfc9376cdcfd80b0ac54e756a17', //用户唯一标志ids
+    token: '',
   },
   /**
    * 封装请求头

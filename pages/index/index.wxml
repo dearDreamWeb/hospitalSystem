@@ -6,7 +6,7 @@
         <input type='text' placeholder='输入你想要的内容' confirm-type='search' value="{{inputValue}}" bindinput='inputBind' bindconfirm='query'></input>
       </view>
     </view>
-    <view class='sousuo' bindtap="suo">搜索</view>
+    <view class='sousuo' bindtap="getInitNewsList">搜索</view>
   </view>
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height:360rpx">
     <block wx:for="{{imgUrls}}" wx:key="imgUrls">
@@ -16,12 +16,12 @@
     </block>
   </swiper>
   <view class="notice-main">
-    <view class="message-title">医院信息</view>
+    <view class="message-title">医院新闻</view>
     <view class="info-main">
       <view wx:for="{{list}}" wx:key="list" wx:for-item="item" wx:for-index="index" class="message-title2" data-data="{{item}}" bindtap="viewDetails">
         {{index+1}}、{{item.title}}
       </view>
-      <view wx:if="{{true}}">加载中...</view>
+      <view wx:if="{{isLoading}}">加载中...</view>
     </view>
   </view>
 </view>

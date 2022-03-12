@@ -1,3 +1,5 @@
+@import '../../utils/wxParse/wxParse.wxss';
+
 .info-main {
   padding: 12px 8px;
   text-align: center;

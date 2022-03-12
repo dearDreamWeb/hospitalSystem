@@ -1,4 +1,4 @@
-// pages/coronavirusNews/coronavirusNews.js
+const WxParse = require('../../utils/wxParse/wxParse')
 Page({
 
   /**
@@ -12,9 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const data= JSON.parse(options.info);
     this.setData({
-      infoData: JSON.parse(options.info)
+      infoData: data
     })
+    WxParse.wxParse('article', 'html', data.summary, this);
   },
 
   /**

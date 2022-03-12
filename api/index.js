@@ -1,4 +1,6 @@
-import {request} from '../utils/request';
+import {
+  request
+} from '../utils/request';
 
 // 上传
 const register = (data) => {
@@ -18,8 +20,17 @@ const login = (data) => {
   })
 }
 
-module.exports = {
-  register,
-  login
+// 获取新闻
+const queryNews = (data) => {
+  return request({
+    url: '/news/query',
+    method: 'post',
+    data,
+  })
 }
 
+module.exports = {
+  register,
+  login,
+  queryNews,
+}

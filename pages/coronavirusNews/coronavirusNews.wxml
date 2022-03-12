@@ -2,5 +2,10 @@
   <view class="info-title">{{infoData.title}}</view>
   <view class="info-date" wx:if="{{infoData.pubDate}}">发布时间：{{infoData.pubDate}}</view>
   <view class="info-source" wx:if="{{infoData.infoSource}}">信息来源：{{infoData.infoSource}}</view>
-  <view class="info-text">{{infoData.summary}}</view>
+  <view class="info-text">
+    <!-- 引入模板 -->
+    <import src="../../utils/wxParse/wxParse.wxml" />
+    <!--data中，article为绑定名字 -->
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
 </view>

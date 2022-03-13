@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/appointment/appointment",
     "pages/index/index",
     "pages/rege_login/rege_login",
     "pages/coronavirus/coronavirus",
     "pages/doctors/doctors",
     "pages/my/my",
-    "pages/appointment/appointment",
     "pages/phone_number/phone_number",
     "pages/my_payments/my_payments",
     "pages/rent/rent",

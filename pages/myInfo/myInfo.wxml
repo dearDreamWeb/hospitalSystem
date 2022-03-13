@@ -1,14 +1,14 @@
 <view>
   <form bindsubmit="updateUserInfo">
     <view class="main">
+      <view class="profile-items disabled-input">
+        <text class="word">手机号</text>
+        <input name="phone_number" value="{{userInfo.phone}}" maxlength="11" type="number" maxlength="11" disabled="true" />
+        <text>(不可修改)</text>
+      </view>
       <view class="profile-items">
         <text class="word">用户名</text>
         <input name="name" value="{{userInfo.name}}" maxlength="6" />
-      </view>
-
-      <view class="profile-items">
-        <text class="word">手机号</text>
-        <input name="phone_number" value="{{userInfo.phone_number}}" maxlength="11" type="number" maxlength="11" />
       </view>
       <view class="profile-items">
         <text class="word">密码</text>
@@ -33,7 +33,7 @@
         <text class="word">头像</text>
         <view class="update-avatar {{!userInfo.avatarUrl?'no-avatar':''}}" style="background-image: url({{userInfo.avatarUrl}});"></view>
       </view>
+      <button form-type="submit"> 确认修改 </button>
     </view>
-    <button form-type="submit"> 确认修改 </button>
   </form>
 </view>

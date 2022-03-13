@@ -1,3 +1,6 @@
+const {
+  uploadAvatar
+} = require('../../api/index')
 var app = getApp();
 Page({
 
@@ -62,24 +65,8 @@ Page({
   /**
    * 上传头像
    */
-  uploadAvatar: () => {
-    wx.chooseImage({
-      success(res) {
-        const tempFilePaths = res.tempFilePaths
-        wx.uploadFile({
-          url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
-          name: 'file',
-          formData: {
-            'user': 'test'
-          },
-          success(res) {
-            const data = res.data
-            //do something
-          }
-        })
-      }
-    })
+  uploadAvatar: async () => {
+    const res = await uploadAvatar();
   },
   /**
    * 生命周期函数--监听页面加载

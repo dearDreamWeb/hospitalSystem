@@ -1,48 +1,34 @@
+const {
+  getSection,
+  getOutpatient,
+} = require('../../api/index')
 var app = getApp()
 var uid;
 Page({
   data: {
     selected: 0,
-    list: [{
-        text: '核酸预约',
-        children: [{
-          text: '核酸预约'
-        }]
-      },
-      {
-        text: '内科',
-        children: [{
-            text: '呼吸内科'
-          },
-          {
-            text: '内分泌科',
-          },
-          {
-            text: '消化内科',
-          }
-        ]
-      },
-      {
-        text: '外科',
-        children: [{
-            text: '胃肠外科'
-          },
-          {
-            text: '泌尿外科',
-          },
-          {
-            text: '关节外科',
-          }
-        ]
-      }
-    ]
+    list: [],
+    outpatientList: [],
   },
-  onShow: function () {
+  onShow: async function () {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 1
       })
+    }
+    const res = await getSection();
+    if (res.success) {
+      const resOutpatient = await getOutpatient({
+        sectionId: res.data.items[0].id
+      });
+      if (resOutpatient.success) {
+        this.setData({
+          ...this.data,
+          list: res.data.items,
+          outpatientList: resOutpatient.data.items
+        })
+      }
     }
   },
   onReady: function () {
@@ -53,14 +39,21 @@ Page({
    * 切换科室
    * @param {*} e 
    */
-  changeSelected: function (e) {
+  changeSelected: async function (e) {
     const {
-      index
+      index,
+      item,
     } = e.currentTarget.dataset;
-    this.setData({
-      ...this.data,
-      selected: index
-    })
+    const res = await getOutpatient({
+      sectionId: item.id
+    });
+    if (res.success) {
+      this.setData({
+        ...this.data,
+        selected: index,
+        outpatientList: res.data.items
+      })
+    }
   },
 
   jumpToDoctor: function (e) {

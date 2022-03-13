@@ -1,9 +1,8 @@
-//my.js
+const {rechargeApi} = require('../../api/index')
 var app = getApp();
 Page({
   data: {
-    username: '未登录',
-    money: 0
+    userInfo: {},
   },
   onShow: async function () {
     if (typeof this.getTabBar === 'function' &&
@@ -12,16 +11,13 @@ Page({
         selected: 3
       })
     }
-    const storage = await wx.getStorage({
-      key: 'userInfo'
-    });
     const {
-      phone_number
-    } = storage.data.userInfo
+      userInfo
+    } = app.globalData;
 
     this.setData({
       ...this.data,
-      username: phone_number
+      userInfo
     })
   },
   /**
@@ -32,11 +28,9 @@ Page({
       title: '充值',
       editable: true,
       placeholderText: '请输入充值金额',
-      success(res) {
+      async success(res) {
+        const {content} = res;
         if (res.confirm) {
-          const {
-            content
-          } = res;
           const reg = /^[1-9][0-9]{0,}$/;
           if (!reg.test(content)) {
             wx.showToast({
@@ -45,6 +39,9 @@ Page({
             })
             return;
           }
+          const resApi = await rechargeApi({
+            rechargeValue: Number(content)
+          });
         }
       }
     })
@@ -61,6 +58,17 @@ Page({
     }
     wx.navigateTo({
       url: '/pages/myInfo/myInfo',
+    })
+  },
+
+  /**
+   * 退出登录
+   */
+  logOut: function () {
+    wx.clearStorageSync('userInfo');
+    wx.clearStorageSync('token');
+    wx.navigateTo({
+      url: '../rege_login/rege_login',
     })
   }
 })

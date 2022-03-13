@@ -1,8 +1,9 @@
 import {
-  request
+  request,
+  uploadAvatar
 } from '../utils/request';
 
-// 上传
+// 注册
 const register = (data) => {
   return request({
     url: '/user/register',
@@ -29,8 +30,39 @@ const queryNews = (data) => {
   })
 }
 
+// 充值
+const rechargeApi = (data) => {
+  return request({
+    url: '/user/recharge',
+    method: 'put',
+    data,
+  })
+}
+
+// 查询科室
+const getSection = (data) => {
+  return request({
+    url: '/section',
+    method: 'get',
+    data,
+  })
+}
+
+// 查询门诊
+const getOutpatient = (data) => {
+  return request({
+    url: '/outpatient',
+    method: 'get',
+    data,
+  })
+}
+
 module.exports = {
   register,
   login,
   queryNews,
+  uploadAvatar,
+  rechargeApi,
+  getSection,
+  getOutpatient,
 }

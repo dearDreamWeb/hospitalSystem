@@ -1,57 +1,64 @@
 <!--logs.wxml-->
 <view class='enter'>
   <view class='avatar'>
-    <image src="{{userInfo.avatarUrl || '../../images/my2.png'}}"  bindtap="jumpToMyInfo"/>
+    <image src="{{userInfo.avatarUrl || '../../images/my2.png'}}" bindtap="jumpToMyInfo" />
   </view>
   <view class='info'>
-    <view class='name'>{{username}}</view>
+    <view class='name'>{{userInfo.name}}</view>
   </view>
   <view class='money'>
-    <view>余额：¥ <text class="money-text">{{money}}</text></view>
+    <view>余额：¥ <text class="money-text">{{userInfo.balance||0}}</text></view>
   </view>
 </view>
-<view class="main">  
-    <view class="my-items my-info">
-      <text class="iconfont icon-fangke"></text>
-      <navigator url="../rege_login/rege_login"><text class="word">注册/登录</text></navigator>
-      <text class="iconfont icon-jiantou"></text>
-    </view>
-    <view class="my-items my-suggests" style="display:none">
-      <text class="iconfont icon-tousu" ></text>
-      <navigator url="../my_reserve/my_reserve" ><text class="word">车位预约</text></navigator>
-      <text class="iconfont icon-jiantou" ></text>
-    </view>
-    
-    <view class="my-items my-suggests">
-      <text class="iconfont icon-fangzi"></text>
-      <navigator url="../my_rent/my_rent"><text class="word">我发布的车位</text></navigator>
-      <text class="iconfont icon-jiantou"></text>
-    </view>
-    <!-- <view class="my-items my-suggests">
+
+<view class="info-main" wx:if="{{userInfo && userInfo.id}}">
+  <view class="my-items my-suggests" style="display:none">
+    <text class="iconfont icon-tousu"></text>
+    <navigator url="../my_reserve/my_reserve"><text class="word">车位预约</text></navigator>
+    <text class="iconfont icon-jiantou"></text>
+  </view>
+
+  <view class="my-items my-suggests">
+    <text class="iconfont icon-fangzi"></text>
+    <navigator url="../my_rent/my_rent"><text class="word">我发布的车位</text></navigator>
+    <text class="iconfont icon-jiantou"></text>
+  </view>
+  <!-- <view class="my-items my-suggests">
       <text class="iconfont icon-gonggao"></text>
       <navigator url="../my_order/my_order"><text class="word">我的租用订单</text></navigator>
       <text class="iconfont icon-jiantou"></text>
     </view> -->
-    <view class="my-items my-suggests">
-      <text class="iconfont icon-gonggao"></text>
-      <navigator url="../my_rent_order/my_rent_order"><text class="word">我的出租订单</text></navigator>
-      <text class="iconfont icon-jiantou"></text>
-    </view>
-    <view class="my-items my-suggests">
-      <text class="iconfont icon-gonggao"></text>
-      <navigator url="../order/order"><text class="word">我的租用订单</text></navigator>
-      <text class="iconfont icon-jiantou"></text>
-    </view>
-    <view class="my-items my-suggests">
-      <text class="iconfont icon-weixiu"></text>
-      <navigator url="../my_record/my_record"><text class="word">我的停车记录</text></navigator>
-      <text class="iconfont icon-jiantou"></text>
-    </view>
-  <view class="my-items contact-service">
-    <text class="iconfont icon-jiaofei"></text>
-    <view class="word" bindtap="recharge">费用充值</view>
+  <view class="my-items my-suggests">
+    <text class="iconfont icon-gonggao"></text>
+    <navigator url="../my_rent_order/my_rent_order"><text class="word">我的出租订单</text></navigator>
     <text class="iconfont icon-jiantou"></text>
   </view>
-
+  <view class="my-items my-suggests">
+    <text class="iconfont icon-gonggao"></text>
+    <navigator url="../order/order"><text class="word">我的租用订单</text></navigator>
+    <text class="iconfont icon-jiantou"></text>
+  </view>
+  <view class="my-items my-suggests">
+    <text class="iconfont icon-weixiu"></text>
+    <navigator url="../my_record/my_record"><text class="word">我的停车记录</text></navigator>
+    <text class="iconfont icon-jiantou"></text>
+  </view>
+  <view class="my-items contact-service" bindtap="recharge">
+    <text class="iconfont icon-jiaofei"></text>
+    <view class="word">费用充值</view>
+    <text class="iconfont icon-jiantou"></text>
+  </view>
+  <view class="my-items my-info" bindtap="logOut">
+    <text class="iconfont icon-fangke"></text>
+    <view class="word">退出登录</view>
+    <text class="iconfont icon-jiantou"></text>
+  </view>
 </view>
 
+<view class="info-main" wx:else>
+  <view class="my-items my-info">
+    <text class="iconfont icon-fangke"></text>
+    <navigator url="../rege_login/rege_login"><text class="word">注册/登录</text></navigator>
+    <text class="iconfont icon-jiantou"></text>
+  </view>
+</view>

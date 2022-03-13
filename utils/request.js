@@ -1,11 +1,15 @@
 let test = 'http://192.168.31.98:8081/hospital';
 let test1 = 'http://hospital.liqiu.vip/hospital'
+let test2 = 'http://dockerhospital.liqiu.vip/hospital';
+
+let host = test2;
+
 const request = ({
   url,
   method,
   data = {},
 }) => {
-  let requestUrl = `${test}${url}`
+  let requestUrl = `${host}${url}`
   return new Promise((resolve, reject) => {
     const token = wx.getStorageSync('token');
     wx.request({
@@ -32,7 +36,7 @@ const uploadAvatar = () => {
       count: 1, // 最多可以选择的图片张数，默认9
       success: function (res) {
         wx.uploadFile({
-          url: `${test}/common/imageUpload`,
+          url: `${host}/common/imageUpload`,
           filePath: res.tempFilePaths[0],
           name: 'image',
           success: function (info) {

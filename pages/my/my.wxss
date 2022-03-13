@@ -95,3 +95,7 @@ button.complect {
 .contact-service {
   border: none;
 }
+
+.info-main{
+  background-color: #fff;
+}

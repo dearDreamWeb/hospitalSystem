@@ -138,9 +138,14 @@ button {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-.update-avatar.no-avatar::after{
+
+.update-avatar.no-avatar::after {
   content: '+';
   font-size: 100rpx;
   font-weight: 100;
   color: #ccc;
+}
+
+.disabled-input {
+  opacity: 0.6;
 }

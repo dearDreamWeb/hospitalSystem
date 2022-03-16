@@ -1,4 +1,6 @@
-const {rechargeApi} = require('../../api/index')
+const {
+  rechargeApi
+} = require('../../api/index')
 var app = getApp();
 Page({
   data: {
@@ -24,12 +26,15 @@ Page({
    * 充值
    */
   recharge: () => {
+    const that = this;
     wx.showModal({
       title: '充值',
       editable: true,
       placeholderText: '请输入充值金额',
       async success(res) {
-        const {content} = res;
+        const {
+          content
+        } = res;
         if (res.confirm) {
           const reg = /^[1-9][0-9]{0,}$/;
           if (!reg.test(content)) {
@@ -42,6 +47,19 @@ Page({
           const resApi = await rechargeApi({
             rechargeValue: Number(content)
           });
+          if (!resApi.success) {
+            wx.showToast({
+              title: res.message,
+            })
+            return;
+          }
+          const data = wx.getStorageSync('userInfo');
+          data.balance = Number(content);
+          wx.setStorageSync('userInfo', data);
+          that.setData({
+            ...that.data,
+            userInfo: data
+          })
         }
       }
     })

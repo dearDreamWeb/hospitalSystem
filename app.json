@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/appointment/appointment",
+    "pages/index/index",
     "pages/rege_login/rege_login",
     "pages/coronavirus/coronavirus",
     "pages/doctors/doctors",

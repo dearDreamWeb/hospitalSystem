@@ -1,6 +1,7 @@
 .notice-main {
   background-color: #eee;
   min-height: 100vh;
+  margin-bottom: 24px;
 }
 
 .situation-title {

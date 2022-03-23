@@ -1,4 +1,7 @@
-// pages/doctors/doctors.js
+const {
+  queryTwo,
+  addReserve,
+} = require('../../api/index')
 Page({
 
   /**
@@ -8,51 +11,63 @@ Page({
     clinicInfo: {}, // 门诊信息
     dateArr: [], // 日期列表
     dateSelected: 0, // 日期选择的索引
-    doctorList: [{
-      name: '王大力',
-      avatarUrl: '',
-      department: '外科',
-      level: '主治医师',
-      specialty: '邻学医床经验丰富，十余年之久。'
+    doctorList: [], // 医生列表
+    appointmentData: [{
+      startTime: 8,
+      endTime: 10
     }, {
-      name: '王大力',
-      avatarUrl: '',
-      department: '外科',
-      level: '主治医师',
-      specialty: '邻学医床经验丰富，十余年之久。'
+      startTime: 10,
+      endTime: 12
     }, {
-      name: '王大力',
-      avatarUrl: '',
-      department: '外科',
-      level: '主治医师',
-      specialty: '邻学医床经验丰富，十余年之久。'
+      startTime: 14,
+      endTime: 16
     }, {
-      name: '王大力',
-      avatarUrl: '',
-      department: '外科',
-      level: '主治医师',
-      specialty: '邻学医床经验丰富，十余年之久。'
-    }], // 医生列表
+      startTime: 16,
+      endTime: 18
+    }],
+    selectedTimeRange: 0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
     const {
       data
     } = options;
+    const {
+      outpatientName,
+      id
+    } = JSON.parse(data);
+
+
     let arr = [];
     const day = new Date().getTime();
     const dayTime = 1000 * 60 * 60 * 24;
     for (let i = 0; i < 7; i++) {
       arr.push(this.formatDate(day + dayTime * (i + 1)))
     }
+    const {
+      dateSelected,
+      appointmentData,
+    } = this.data;
+    const date = arr[dateSelected];
+    const newStartTime = `${date.dateText} ${appointmentData[0].startTime}:00:00`;
+    const endStartTime = `${date.dateText} ${appointmentData[0].endTime}:00:00`;
+
+    const params = {
+      startTime: new Date(newStartTime).getTime() / 1000,
+      endTime: new Date(endStartTime).getTime() / 1000,
+      outpatientId: id,
+      outpatient: outpatientName
+    }
+    const res = await queryTwo(params);
 
     this.setData({
       ...this.data,
-      clinicInfo: data,
-      dateArr: arr
+      clinicInfo: JSON.parse(data),
+      dateArr: arr,
+      doctorList: res.data || []
     })
   },
 
@@ -71,6 +86,9 @@ Page({
     }
   },
 
+  /**
+   * 日期选择
+   */
   dateSelectedHandler: function (e) {
     const {
       index
@@ -79,6 +97,77 @@ Page({
       ...this.data,
       dateSelected: index
     })
+  },
+
+  /**
+   * 时间段选择
+   */
+  timeSelectedHandler: function (e) {
+    const {
+      index,
+      data
+    } = e.currentTarget.dataset;
+    const {
+      startTime,
+      endTime
+    } = data;
+    const {
+      dateSelected,
+      dateArr
+    } = this.data;
+    const date = dateArr[dateSelected];
+    const newStartTime = `${date.dateText} ${startTime}:00:00`;
+    const endStartTime = `${date.dateText} ${endTime}:00:00`;
+    console.log(getTimeArr());
+    console.log(new Date(newStartTime).getTime(),new Date(endStartTime).getTime());
+    this.setData({
+      ...this.data,
+      selectedTimeRange: index
+    })
+  },
+
+  getTimeArr(){
+    const {
+      selectedTimeRange,
+      appointmentData,
+      dateSelected,
+      dateArr
+    } = this.data;
+    const date = dateArr[dateSelected];
+    const newStartTime = `${date.dateText} ${appointmentData[selectedTimeRange].startTime}:00:00`;
+    const endStartTime = `${date.dateText} ${appointmentData[selectedTimeRange].endTime}:00:00`;
+    return [new Date(newStartTime).getTime()/1000,new Date(endStartTime).getTime()/100]
+  },
+
+  /***
+   * 预约
+   */
+  async appointmentHandle(e) {
+    const {
+      data
+    } = e.currentTarget.dataset;
+    const {name,id} = data;
+    const {
+      clinicInfo,
+      selectedTimeRange,
+      appointmentData,
+      dateSelected,
+      dateArr
+    } = this.data;
+    const {outpatientName,sectionName} = clinicInfo;
+    const date = dateArr[dateSelected];
+    const newStartTime = `${date.dateText} ${appointmentData[selectedTimeRange].startTime}:00:00`;
+
+    const params = {
+      "reserveUser": name,
+      "reserveTime": new Date(newStartTime).getTime()/1000,
+      "reserveSection": sectionName,
+      "reserveOutpatient": outpatientName,
+      "doctorId": id,
+      "status": 1,
+      "reserveMoney": 22.112
+    }
+    const res = await addReserve(params)
   },
 
   /**

@@ -2,11 +2,17 @@
   <view class="title">预约日期选择</view>
   <view class="date-main">
     <block wx:for="{{dateArr}}" wx:key="dateArr" wx:for-item="item" wx:for-index="index">
-      <view class="date-item {{index ===dateSelected?'date-selected':''}}" bindtap="dateSelectedHandler" data-index="{{index}}">
+      <view class="date-item {{index ===dateSelected?'date-selected':''}}" bindtap="dateSelectedHandler" data-index="{{index}}" data-data="{{item}}">
         <view>{{item.week}}</view>
         <view class="date-text">{{item.dateText}}</view>
       </view>
     </block>
+  </view>
+  <view class="title">预约时间选择</view>
+  <view class="time-range">
+    <view wx:for="{{appointmentData}}" wx:key="appointmentData" wx:for-item="item" wx:for-index="index" class="time-item {{selectedTimeRange===index?'date-selected':''}}" bindtap="timeSelectedHandler" data-index="{{index}}" data-data="{{item}}">
+      {{item.startTime}}:00~{{item.endTime}}:00
+    </view>
   </view>
   <view class="title">预约医生</view>
   <block wx:for="{{doctorList}}" wx:key="doctorList" wx:for-item="doctorItem">
@@ -15,10 +21,11 @@
       <view class="desc-main">
         <view class="desc-top">
           <view>{{doctorItem.name}}</view>
-          <view class="desc-department">{{doctorItem.department}}</view>
-          <view class="desc-department">{{doctorItem.level}}</view>
+          <!-- <view class="desc-department">{{doctorItem.department}}</view> -->
+          <!-- <view class="desc-department">{{doctorItem.level}}</view> -->
         </view>
-        <view class="desc-specialty">擅长：{{doctorItem.specialty}}</view>
+        <view class="desc-specialty">擅长：{{doctorItem.adept}}</view>
+        <view bindtap="appointmentHandle" data-data="{{doctorItem}}">预约</view>
       </view>
     </view>
   </block>

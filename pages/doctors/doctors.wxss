@@ -9,6 +9,22 @@
   flex-wrap: wrap;
 }
 
+.time-range{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.time-item{
+  color: #3c3c3c;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 4px 8px;
+  width: 40%;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
 .date-item {
   width: 22%;
   margin-right: calc(12% / 4);

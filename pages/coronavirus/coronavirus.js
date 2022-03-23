@@ -129,7 +129,7 @@ Page({
           console.log('获取错误')
         }
       })
-    }, 3000)
+    }, 2000)
   },
   jumpNewsInfo(e) {
     const {

@@ -57,6 +57,23 @@ const getOutpatient = (data) => {
   })
 }
 
+// 查询预约医生
+const queryTwo = (data) => {
+  return request({
+    url: '/reserve/queryTwo',
+    method: 'get',
+    data,
+  })
+}
+// 查询预约医生
+const addReserve = (data) => {
+  return request({
+    url: '/reserve/save',
+    method: 'post',
+    data,
+  })
+}
+
 module.exports = {
   register,
   login,
@@ -65,4 +82,6 @@ module.exports = {
   rechargeApi,
   getSection,
   getOutpatient,
+  queryTwo,
+  addReserve,
 }

@@ -30,9 +30,15 @@ Page({
 
   onReachBottom: function () {
     const {
+      page,
+      pageSize,
+      total,
       isLoading
     } = this.data;
     if (isLoading) {
+      return;
+    }
+    if ((page + 1) * pageSize > total) {
       return;
     }
     this.setData({
@@ -55,6 +61,7 @@ Page({
         ...this.data,
         list: [...list, ...res.data.items],
         page: page + 1,
+        total: res.data.total,
         isLoading: false,
       })
     })

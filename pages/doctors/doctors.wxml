@@ -35,7 +35,7 @@
       </view>
     </view>
   </block>
-  <view v-if="{{!doctorList.length}}" class="no-appointment">
+  <view wx:if="{{!doctorList.length}}" class="no-appointment">
     暂无可以预约的医生
   </view>
 </view>

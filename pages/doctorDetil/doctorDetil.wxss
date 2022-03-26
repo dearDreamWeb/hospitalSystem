@@ -1,0 +1,36 @@
+.avatar-box{
+  display: flex;
+  justify-content: center;
+  color: #333;
+}
+
+ .avatar {
+  margin: 32rpx auto;
+  width: 250rpx;
+  height: 250rpx;
+  background-color: #eee;
+}
+
+.info-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.technicalName{
+  display: inline-block;
+  padding: 2px 4px;
+  background-color: #87de5e;
+  color: #fff;
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+.info-item{
+  margin-bottom: 32rpx;
+}
+
+.price{
+  color: #e4393c;
+  font-size: 40rpx;
+}

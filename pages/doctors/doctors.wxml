@@ -16,17 +16,26 @@
   </view>
   <view class="title">预约医生</view>
   <block wx:for="{{doctorList}}" wx:key="doctorList" wx:for-item="doctorItem">
-    <view class="docotr-item">
+    <view class="docotr-item" data-data="{{doctorItem}}" bindtap="jumpToDoctorDetil">
       <image class="avatar" src="{{doctorItem.avatarUrl || '../../images/doctor.png'}}"></image>
       <view class="desc-main">
         <view class="desc-top">
           <view>{{doctorItem.name}}</view>
-          <!-- <view class="desc-department">{{doctorItem.department}}</view> -->
-          <!-- <view class="desc-department">{{doctorItem.level}}</view> -->
+          <view class="desc-department">{{doctorItem.sectionName}}</view>
+          <view class="desc-department">{{doctorItem.outpatientName}}</view>
+          <view class="desc-department">{{doctorItem.technicalName}}</view>
         </view>
         <view class="desc-specialty">擅长：{{doctorItem.adept}}</view>
-        <view bindtap="appointmentHandle" data-data="{{doctorItem}}">预约</view>
+        <view class="desc-btnBox" wx:if="{{doctorItem.reserveCount<10}}">
+          剩余预约人数：<view class="resetCount">{{10-doctorItem.reserveCount}}</view>
+          <view class="price">￥{{doctorItem.price}}</view>
+          <view class="btn" catchtap="appointmentHandle" data-data="{{doctorItem}}">预约</view>
+        </view>
+        <view wx:else class="out">预约已满</view>
       </view>
     </view>
   </block>
+  <view v-if="{{!doctorList.length}}" class="no-appointment">
+    暂无可以预约的医生
+  </view>
 </view>

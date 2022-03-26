@@ -11,8 +11,8 @@
     "pages/rent/rent",
     "pages/community/message/message/message",
     "pages/coronavirusNews/coronavirusNews",
-    "pages/myInfo/myInfo",
-    "pages/doctors"
+    "pages/doctorDetil/doctorDetil",
+    "pages/myInfo/myInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,7 +1,9 @@
 const {
   queryTwo,
   addReserve,
-} = require('../../api/index')
+} = require('../../api/index');
+const {resetUserInfo} = require('../../utils/tools')
+var app = getApp();
 Page({
 
   /**
@@ -35,10 +37,7 @@ Page({
     const {
       data
     } = options;
-    const {
-      outpatientName,
-      id
-    } = JSON.parse(data);
+
 
 
     let arr = [];
@@ -47,13 +46,34 @@ Page({
     for (let i = 0; i < 7; i++) {
       arr.push(this.formatDate(day + dayTime * (i + 1)))
     }
+    this.setData({
+      ...this.data,
+      dateArr: arr,
+      clinicInfo: JSON.parse(data),
+    },()=>{
+      this.getDoctorList()
+    })
+  },
+
+  /**
+   * 获取医生
+   * @param {*} date 
+   */
+ async getDoctorList(){
     const {
       dateSelected,
       appointmentData,
+      selectedTimeRange,
+      clinicInfo,
+      dateArr,
     } = this.data;
-    const date = arr[dateSelected];
-    const newStartTime = `${date.dateText} ${appointmentData[0].startTime}:00:00`;
-    const endStartTime = `${date.dateText} ${appointmentData[0].endTime}:00:00`;
+    const {
+      outpatientName,
+      id
+    } = clinicInfo;
+    const date = dateArr[dateSelected];
+    const newStartTime = `${date.dateText} ${appointmentData[selectedTimeRange].startTime}:00:00`;
+    const endStartTime = `${date.dateText} ${appointmentData[selectedTimeRange].endTime}:00:00`;
 
     const params = {
       startTime: new Date(newStartTime).getTime() / 1000,
@@ -65,11 +85,10 @@ Page({
 
     this.setData({
       ...this.data,
-      clinicInfo: JSON.parse(data),
-      dateArr: arr,
       doctorList: res.data || []
     })
   },
+
 
   /**
    * 日期处理
@@ -118,7 +137,6 @@ Page({
     const date = dateArr[dateSelected];
     const newStartTime = `${date.dateText} ${startTime}:00:00`;
     const endStartTime = `${date.dateText} ${endTime}:00:00`;
-    console.log(getTimeArr());
     console.log(new Date(newStartTime).getTime(),new Date(endStartTime).getTime());
     this.setData({
       ...this.data,
@@ -146,7 +164,10 @@ Page({
     const {
       data
     } = e.currentTarget.dataset;
-    const {name,id} = data;
+    const {price,id} = data;
+    const {
+      userInfo
+    } = app.globalData;
     const {
       clinicInfo,
       selectedTimeRange,
@@ -158,62 +179,45 @@ Page({
     const date = dateArr[dateSelected];
     const newStartTime = `${date.dateText} ${appointmentData[selectedTimeRange].startTime}:00:00`;
 
+    if(userInfo.balance<price){
+      wx.showToast({
+        title:'费用不足！'
+      })
+      return;
+    }
+
     const params = {
-      "reserveUser": name,
+      "reserveUser": userInfo.name,
       "reserveTime": new Date(newStartTime).getTime()/1000,
       "reserveSection": sectionName,
       "reserveOutpatient": outpatientName,
       "doctorId": id,
       "status": 1,
-      "reserveMoney": 22.112
+      "reserveMoney": price
     }
-    const res = await addReserve(params)
+    const res = await addReserve(params);
+    if(!res.success){
+      wx.showToast({
+        title: res.message || '预约失败',
+      })
+      return;
+    }
+    wx.showToast({
+      title: '预约成功',
+    });
+    this.getDoctorList();
+    resetUserInfo();
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 进入医生详情
    */
-  onReady: function () {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  jumpToDoctorDetil(e){
+    const {
+      data
+    } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/doctorDetil/doctorDetil?data=${JSON.stringify(data)}`,
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -2,8 +2,6 @@ const {
   getSection,
   getOutpatient,
 } = require('../../api/index')
-var app = getApp()
-var uid;
 Page({
   data: {
     selected: 0,
@@ -25,6 +23,7 @@ Page({
       if (resOutpatient.success) {
         this.setData({
           ...this.data,
+          selected:0,
           list: res.data.items,
           outpatientList: resOutpatient.data.items
         })

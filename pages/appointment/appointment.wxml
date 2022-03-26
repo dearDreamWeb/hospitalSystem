@@ -9,7 +9,7 @@
                 </block>
             </view>
             <view class="sub-nav" wx:if="{{outpatientList.length}}">
-                <view wx:for="{{outpatientList}}" wx:for-item="subItem" class="sub-nav-item" data-data="{{subItem}}" bindtap="jumpToDoctor">
+                <view wx:for="{{outpatientList}}" wx:key="outpatientList" wx:for-item="subItem" class="sub-nav-item" data-data="{{subItem}}" bindtap="jumpToDoctor">
                     <view>{{subItem.outpatientName}}</view>
                     <view>></view>
                 </view>

@@ -1,6 +1,7 @@
 const {
-  rechargeApi
+  rechargeApi,getUserInfo
 } = require('../../api/index')
+const {resetUserInfo} = require('../../utils/tools')
 var app = getApp();
 Page({
   data: {
@@ -16,7 +17,6 @@ Page({
     const {
       userInfo
     } = app.globalData;
-
     this.setData({
       ...this.data,
       userInfo
@@ -25,7 +25,7 @@ Page({
   /**
    * 充值
    */
-  recharge: () => {
+   recharge(){
     const that = this;
     wx.showModal({
       title: '充值',
@@ -36,6 +36,7 @@ Page({
           content
         } = res;
         if (res.confirm) {
+          
           const reg = /^[1-9][0-9]{0,}$/;
           if (!reg.test(content)) {
             wx.showToast({
@@ -53,12 +54,15 @@ Page({
             })
             return;
           }
-          const data = wx.getStorageSync('userInfo');
-          data.balance = Number(content);
-          wx.setStorageSync('userInfo', data);
+          const resUserInfo = await getUserInfo();
+          if (!resUserInfo.success) {
+              return;
+          }
+          wx.setStorageSync('userInfo', resUserInfo.data);
+          app.globalData.userInfo = resUserInfo.data;
           that.setData({
             ...that.data,
-            userInfo: data
+            userInfo: resUserInfo.data
           })
         }
       }
@@ -67,7 +71,7 @@ Page({
   /**
    * 跳转个人详情
    */
-  jumpToMyInfo: () => {
+  jumpToMyInfo(){
     const {
       userInfo
     } = app.globalData;

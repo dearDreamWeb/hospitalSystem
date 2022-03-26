@@ -74,6 +74,15 @@ const addReserve = (data) => {
   })
 }
 
+// 查询预约医生
+const getUserInfo = (data) => {
+  return request({
+    url: '/user/getOne',
+    method: 'get',
+    data,
+  })
+}
+
 module.exports = {
   register,
   login,
@@ -84,4 +93,5 @@ module.exports = {
   getOutpatient,
   queryTwo,
   addReserve,
+  getUserInfo,
 }

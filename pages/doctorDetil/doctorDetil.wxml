@@ -1,0 +1,19 @@
+<view class="doctor-detil">
+  <view class="avatar-box">
+    <image class="avatar" src="{{doctorInfo.avatarUrl || '../../images/doctor.png'}}" />
+  </view>
+  <view class="info-box">
+    <view class="info-item">{{doctorInfo.name}}</view>
+    <view class="info-item">{{doctorInfo.sectionName}} {{doctorInfo.outpatientName}}</view>
+    <view class="info-item">
+      <text class='technicalName'>{{doctorInfo.technicalName}}</text>
+      {{doctorInfo.sex}}
+    </view>
+    <view class="info-item">{{doctorInfo.age}}岁 {{doctorInfo.workAge}}年工作经验</view>
+    <view class="info-item">
+      预约费用：
+      <text class="price">￥{{doctorInfo.price}}</text>
+    </view>
+    <view class="info-item">擅长：{{doctorInfo.adept}}</view>
+  </view>
+</view>

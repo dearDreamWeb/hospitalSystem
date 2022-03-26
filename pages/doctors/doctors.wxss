@@ -9,13 +9,13 @@
   flex-wrap: wrap;
 }
 
-.time-range{
+.time-range {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.time-item{
+.time-item {
   color: #3c3c3c;
   background-color: #fff;
   border-radius: 5px;
@@ -49,7 +49,8 @@
   font-size: 40rpx;
   padding: 12rpx 12rpx;
   margin-bottom: 24rpx;
-  text-shadow: 1px 3px 2px #bfbdbd;
+  color: #606266;
+  font-weight: 600;
 }
 
 .date-text {
@@ -65,13 +66,14 @@
 
 .avatar {
   margin-right: 24rpx;
-  width: 100rpx;
-  height: 100rpx;
+  width: 150rpx;
+  height: 150rpx;
   background-color: #eee;
 }
 
 .desc-main {
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -92,4 +94,35 @@
 
 .desc-specialty {
   color: #c5c4c4;
+}
+
+.desc-btnBox {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 24rpx;
+  color: #c5c4c4;
+}
+.out{
+  color:#e4393c;
+}
+
+.desc-btnBox .price {
+  margin: 0 8px;
+  color: red;
+}
+.desc-btnBox .resetCount {
+  color:#000;
+}
+
+.desc-btnBox .btn {
+  padding: 4px 16px;
+  background: #f06668;
+  color: #fff;
+}
+
+.no-appointment{
+  font-size: 28px;
+  color: #a59c9c;
+  text-align: center;
 }

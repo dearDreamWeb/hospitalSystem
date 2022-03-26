@@ -12,7 +12,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const data= JSON.parse(options.info);
+    const { info, title, summary } = options;
+    let data = {}
+    if (info) {
+      data = JSON.parse(options.info);
+    } else {
+      data = { title, summary:decodeURIComponent(summary) }
+    }
+
     this.setData({
       infoData: data
     })

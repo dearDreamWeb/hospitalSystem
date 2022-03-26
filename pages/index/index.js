@@ -19,7 +19,7 @@ Page({
     isLoading: false,
     list: [],
     page: 1,
-    pageSize: 7,
+    pageSize: 10,
   },
   //事件处理函数
   bindViewTap: function () {
@@ -76,10 +76,7 @@ Page({
       content
     } = e.currentTarget.dataset.data;
     wx.navigateTo({
-      url: '../coronavirusNews/coronavirusNews?info=' + JSON.stringify({
-        title,
-        summary: content
-      }),
+      url: '../coronavirusNews/coronavirusNews?title=' + title+'&summary='+encodeURIComponent(content),
     })
   },
 

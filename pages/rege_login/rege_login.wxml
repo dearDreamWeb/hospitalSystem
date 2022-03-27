@@ -71,10 +71,10 @@
 						<text class="word">类型</text>
 						<radio-group name="userType">
 							<label>
-								<radio color="#54afc5" value="user" />普通用户
+								<radio color="#54afc5" value="ORDINARY_USER" />普通用户
 							</label>
 							<label>
-								<radio color="#54afc5" value="doctor" />医生
+								<radio color="#54afc5" value="DOCTOR" />医生
 							</label>
 						</radio-group>
 					</view>

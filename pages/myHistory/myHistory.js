@@ -18,7 +18,7 @@ Page({
       },
       {
         status: 0,
-        text: '预约失败'
+        text: '取消预约'
       },
       {
         status: 1,

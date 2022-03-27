@@ -142,36 +142,35 @@ Page({
       return;
     }
 
-    if (userType === 'user') {
-      const res = await login({
-        phone,
-        pwd
-      })
-      if (!res.success) {
-        wx.showToast({
-          title: res.message,
-        })
-        return;
-      }
-      const {
-        token,
-        userInfo
-      } = res.data;
-      wx.setStorageSync('userInfo', userInfo);
-      wx.setStorageSync('token', token);
-      app.globalData.userInfo = userInfo
-      app.globalData.token = token
+    const res = await login({
+      phone,
+      pwd,
+      type:userType
+    })
+    if (!res.success) {
       wx.showToast({
-        title: '登录成功',
-        success: () => {
-          setTimeout(() => {
-            wx.switchTab({
-              url: '../index/index'
-            })
-          }, 1000)
-        }
+        title: res.message,
       })
+      return;
     }
+    const {
+      token,
+      userInfo
+    } = res.data;
+    wx.setStorageSync('userInfo', userInfo);
+    wx.setStorageSync('token', token);
+    app.globalData.userInfo = userInfo
+    app.globalData.token = token
+    wx.showToast({
+      title: '登录成功',
+      success: () => {
+        setTimeout(() => {
+          wx.switchTab({
+            url: '../index/index'
+          })
+        }, 1000)
+      }
+    })
 
   },
   onReady: function () {

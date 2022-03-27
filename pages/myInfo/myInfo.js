@@ -1,6 +1,9 @@
 const {
-  uploadAvatar
+  uploadAvatar,
+  updateUser,
 } = require('../../api/index')
+const { resetUserInfo } = require('../../utils/tools')
+
 var app = getApp();
 Page({
 
@@ -8,14 +11,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {}
+    userInfo: {},
+    avatarUrlInfo: '',
+    showAvatarUrlInfo: ''
+  },
+
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.setData({
+      ...this.data,
+      userInfo: app.globalData.userInfo,
+      avatarUrlInfo: app.globalData.userInfo.avatarUrl,
+      showAvatarUrlInfo: app.globalData.userInfo.avatarUrl
+    })
   },
 
   /**
    * 修改个人信息
    * @param {*} options 
    */
-  updateUserInfo: (e) => {
+  async updateUserInfo(e) {
     const {
       name,
       phone_number,
@@ -23,6 +41,8 @@ Page({
       sex,
       age,
     } = e.detail.value;
+    const { avatarUrlInfo, userInfo } = this.data;
+    const { id } = userInfo;
 
     if (!name || !phone_number || !pwd || !sex || !age) {
       wx.showToast({
@@ -50,6 +70,21 @@ Page({
       })
       return;
     }
+    const res = await updateUser({
+      id, name,
+      phone_number,
+      pwd,
+      sex,
+      age,
+      avatarUrl: avatarUrlInfo,
+    })
+    if (!res.success) {
+      wx.showToast({
+        title: '修改失败'
+      })
+      return;
+    }
+    resetUserInfo();
     wx.showToast({
       title: '修改成功',
       success: () => {
@@ -65,65 +100,15 @@ Page({
   /**
    * 上传头像
    */
-  uploadAvatar: async () => {
+   async uploadAvatar(){
     const res = await uploadAvatar();
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+    const { absolutePath, name } = res.data;
     this.setData({
       ...this.data,
-      userInfo: app.globalData.userInfo
+      avatarUrlInfo: name,
+      showAvatarUrlInfo: absolutePath
     })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
 
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

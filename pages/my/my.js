@@ -17,6 +17,7 @@ Page({
     const {
       userInfo
     } = app.globalData;
+    console.log(userInfo)
     this.setData({
       ...this.data,
       userInfo

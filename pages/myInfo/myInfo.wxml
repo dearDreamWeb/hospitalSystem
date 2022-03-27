@@ -12,7 +12,7 @@
       </view>
       <view class="profile-items">
         <text class="word">密码</text>
-        <input type="password" value="{{userInfo.pwd}}" name="pwd" maxlength="11" />
+        <input type="password" value="{{userInfo.pwd}}" name="pwd"/>
       </view>
       <view class="profile-items gender">
         <text class="word">性别</text>
@@ -31,7 +31,7 @@
       </view>
       <view class="avatar-box" bindtap="uploadAvatar">
         <text class="word">头像</text>
-        <view class="update-avatar {{!userInfo.avatarUrl?'no-avatar':''}}" style="background-image: url({{userInfo.avatarUrl}});"></view>
+        <view class="update-avatar {{!showAvatarUrlInfo?'no-avatar':''}}" style="background-image: url({{userInfo.avatarUrl}});"></view>
       </view>
       <button form-type="submit"> 确认修改 </button>
     </view>

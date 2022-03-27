@@ -12,6 +12,15 @@ const register = (data) => {
   })
 }
 
+// 修改用户信息
+const updateUser = (data) => {
+  return request({
+    url: '/user',
+    method: 'put',
+    data,
+  })
+}
+
 // 上传
 const login = (data) => {
   return request({
@@ -95,6 +104,14 @@ const queryUserAppointment = (data)=>{
   })
 }
 
+// 修改医生
+export const updateDoctor = (data) => {
+  return request('/doctor', {
+      method: 'put',
+      data
+  });
+};
+
 module.exports = {
   register,
   login,
@@ -107,4 +124,6 @@ module.exports = {
   addReserve,
   getUserInfo,
   queryUserAppointment,
+  updateDoctor,
+  updateUser,
 }

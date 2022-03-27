@@ -1,7 +1,7 @@
 const {
     getUserInfo,
 } = require('../api/index');
-
+var app = getApp();
 /**
  * 重置用户自己的数据
  * @returns 

@@ -1,0 +1,46 @@
+<view class="list-main">
+    <!-- createTime: 1648291924
+doctorId: "4779ea0411c148aa8b543581951caa10"
+id: 14
+reserveMoney: 80
+reserveOutpatient: "新冠疫苗预约"
+reserveSection: "传染科"
+reserveTime: 1648368000
+reserveUser: "王强"
+status: 0
+updateTime: 1648338245 -->
+    <view class="title">预约记录：</view>
+    <view class="status-box">
+        预约状态查询：
+        <view bind:tap="changeStatus" data-index="{{index}}" class="status-text {{selected === index?'selected':''}}" wx:for="{{options}}" wx:key="options" wx:for-item="optionsItem" wx:for-index="index">
+            {{optionsItem.text}}
+        </view>
+    </view>
+    <block wx:for="{{list}}" wx:key="list" wx:for-item="item">
+        <view class="list-box">
+            <view class="list-info">
+                <view>
+                    <text class="item-title">预约时间：</text>
+                    {{item.reserveTime}}
+                </view>
+                <view>
+                    <text class="item-title">预约科室：</text>
+                    {{item.reserveSection}}
+                </view>
+                <view>
+                    <text class="item-title">预约门诊：</text>
+                    {{item.reserveOutpatient}}
+                </view>
+                <view>
+                    <text class="item-title">预约医生：</text>
+                    {{item.reserveUser}}
+                </view>
+                <view>
+                    <text class="item-title">预约费用：</text>
+                    ￥{{item.reserveMoney}}
+                </view>
+            </view>
+            <image class="status" src="{{item.status ===1?'../../images/appointmentSuccess.png':'../../images/appointmentFail.png'}}" />
+        </view>
+    </block>
+</view>

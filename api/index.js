@@ -83,6 +83,18 @@ const getUserInfo = (data) => {
   })
 }
 
+/**
+ * 用户查询自己的预约列表
+ * @param {*} data 
+ */
+const queryUserAppointment = (data)=>{
+  return request({
+    url: '/reserve/query',
+    method: 'get',
+    data,
+  })
+}
+
 module.exports = {
   register,
   login,
@@ -94,4 +106,5 @@ module.exports = {
   queryTwo,
   addReserve,
   getUserInfo,
+  queryUserAppointment,
 }

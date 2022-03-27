@@ -14,7 +14,7 @@
 <view class="info-main" wx:if="{{userInfo && userInfo.id}}">
   <view class="my-items my-suggests">
     <text class="iconfont icon-gonggao"></text>
-    <navigator url="../my_rent_order/my_rent_order"><text class="word">我的出租订单</text></navigator>
+    <navigator url="../myHistory/myHistory"><text class="word">我的预约记录</text></navigator>
     <text class="iconfont icon-jiantou"></text>
   </view>
   <view class="my-items contact-service" bindtap="recharge">

@@ -1,0 +1,32 @@
+<view class="list-main">
+  <view class="title">消费记录：</view>
+  <view class="status-box">
+    <view class="search">消费状态查询：</view>
+    <view bind:tap="changeStatus" data-index="{{index}}" class="status-text {{selected === index?'selected':''}}" wx:for="{{options}}" wx:key="options" wx:for-item="optionsItem" wx:for-index="index">
+      {{optionsItem.text}}
+    </view>
+  </view>
+  <block wx:for="{{list}}" wx:key="list" wx:for-item="item">
+    <view class="list-box">
+      <view class="list-info">
+        <view>
+          <text class="item-title">消费时间：</text>
+          {{item.createTime}}
+        </view>
+        <view>
+          <text class="item-title">消费状态：</text>
+          {{item.name}}
+        </view>
+        <!-- <view>
+                    <text class="item-title">消费费用：</text>
+                    
+                </view> -->
+      </view>
+      <view class="{{item.name==='取消预约'||item.name==='成功充值'?'red':'green'}}">
+        {{item.name==='取消预约'||item.name==='成功充值'?'+':'-'}}
+        ￥{{item.price}}
+      </view>
+      <!-- <image class="status" src="{{item.status ===1?'../../images/appointmentSuccess.png':'../../images/appointmentFail.png'}}" /> -->
+    </view>
+  </block>
+</view>

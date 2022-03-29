@@ -3,35 +3,35 @@
     <view class="main">
       <view class="profile-items disabled-input">
         <text class="word">手机号</text>
-        <input name="phone_number" value="{{userInfo.phone}}" maxlength="11" type="number" maxlength="11" disabled="true" />
+        <input name="phone_number" value="{{userInfo.phone || doctorInfo.phone}}" maxlength="11" type="number" maxlength="11" disabled="true" />
         <text>(不可修改)</text>
       </view>
       <view class="profile-items">
         <text class="word">用户名</text>
-        <input name="name" value="{{userInfo.name}}" maxlength="6" />
+        <input name="name" value="{{userInfo.name || doctorInfo.name}}" maxlength="6" />
       </view>
       <view class="profile-items">
         <text class="word">密码</text>
-        <input type="password" value="{{userInfo.pwd}}" name="pwd"/>
+        <input type="password" value="{{userInfo.pwd||doctorInfo.pwd}}" name="pwd"/>
       </view>
       <view class="profile-items gender">
         <text class="word">性别</text>
         <radio-group name="sex">
           <label>
-            <radio color="#54afc5" value="男" checked="{{userInfo.sex ==='男'}}" />男
+            <radio color="#54afc5" value="男" checked="{{userInfo.sex ==='男' || doctorInfo.sex==='男'}}" />男
           </label>
           <label>
-            <radio color="#54afc5" value="女" checked="{{userInfo.sex ==='女'}}" />女
+            <radio color="#54afc5" value="女" checked="{{userInfo.sex ==='女'||doctorInfo.sex==='女'}}" />女
           </label>
         </radio-group>
       </view>
       <view class="profile-items">
         <text class="word">年龄</text>
-        <input name="age" value="{{userInfo.age}}" maxlength="3" type="number" />
+        <input name="age" value="{{userInfo.age||doctorInfo.age}}" maxlength="3" type="number" />
       </view>
       <view class="avatar-box" bindtap="uploadAvatar">
         <text class="word">头像</text>
-        <view class="update-avatar {{!showAvatarUrlInfo?'no-avatar':''}}" style="background-image: url({{userInfo.avatarUrl}});"></view>
+        <view class="update-avatar {{!showAvatarUrlInfo?'no-avatar':''}}" style="background-image: url({{userInfo.avatarUrl||doctorInfo.avatarUrl}});"></view>
       </view>
       <button form-type="submit"> 确认修改 </button>
     </view>

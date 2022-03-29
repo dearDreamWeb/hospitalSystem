@@ -6,6 +6,7 @@ var app = getApp();
 Page({
   data: {
     userInfo: {},
+    doctorInfo: {},
   },
   onShow: async function () {
     if (typeof this.getTabBar === 'function' &&
@@ -15,12 +16,14 @@ Page({
       })
     }
     const {
-      userInfo
+      userInfo,
+      doctorInfo,
     } = app.globalData;
-    console.log(userInfo)
+
     this.setData({
       ...this.data,
-      userInfo
+      userInfo,
+      doctorInfo
     })
   },
   /**
@@ -74,9 +77,10 @@ Page({
    */
   jumpToMyInfo(){
     const {
-      userInfo
+      userInfo,
+      doctorInfo
     } = app.globalData;
-    if (!userInfo) {
+    if (!userInfo && !doctorInfo) {
       return;
     }
     wx.navigateTo({
@@ -89,6 +93,7 @@ Page({
    */
   logOut: function () {
     wx.clearStorageSync('userInfo');
+    wx.clearStorageSync('doctorInfo');
     wx.clearStorageSync('token');
     wx.navigateTo({
       url: '../rege_login/rege_login',

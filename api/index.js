@@ -48,6 +48,15 @@ const rechargeApi = (data) => {
   })
 }
 
+// 充值
+const queryRechargeHistory = (data) => {
+  return request({
+    url: '/recharge',
+    method: 'get',
+    data,
+  })
+}
+
 // 查询科室
 const getSection = (data) => {
   return request({
@@ -126,4 +135,5 @@ module.exports = {
   queryUserAppointment,
   updateDoctor,
   updateUser,
+  queryRechargeHistory,
 }

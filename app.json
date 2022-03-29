@@ -12,7 +12,8 @@
     "pages/community/message/message/message",
     "pages/coronavirusNews/coronavirusNews",
     "pages/doctorDetil/doctorDetil",
-    "pages/myInfo/myInfo"
+    "pages/myInfo/myInfo",
+    "pages/rechargeHistory/rechargeHistory"
   ],
   "window": {
     "backgroundTextStyle": "light",

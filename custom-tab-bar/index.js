@@ -1,3 +1,4 @@
+var app = getApp();
 Component({
   data: {
     selected: 0,
@@ -39,18 +40,6 @@ Component({
           "selectedIconPath": "../images/park1.png"
         },
         {
-          "pagePath": "/pages/appointment/appointment",
-          "text": "预约就诊",
-          "iconPath": "../images/appoint.png",
-          "selectedIconPath": "../images/appoint1.png"
-        },
-        {
-          "pagePath": "/pages/rent/rent",
-          "text": "发布",
-          "iconPath": "../images/4.png",
-          "selectedIconPath": "../images/5.png"
-        },
-        {
           "pagePath": "/pages/coronavirus/coronavirus",
           "text": "肺炎疫情",
           "iconPath": "../images/announce.png",
@@ -67,8 +56,9 @@ Component({
     list: []
   },
   attached() {
+    
     this.setData({
-      list: this.data.allList[0].list1
+      list: app.globalData.userInfo?this.data.allList[0].list1:this.data.allList[0].list2
     })
   },
   methods: {

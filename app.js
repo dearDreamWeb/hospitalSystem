@@ -8,10 +8,13 @@ App({
 
   onLaunch: async function () {
     const userInfo = wx.getStorageSync('userInfo');
+    const doctorInfo = wx.getStorageSync('doctorInfo');
     const token = wx.getStorageSync('token');
     this.globalData.userInfo = userInfo;
+    this.globalData.doctorInfo = doctorInfo;
     this.globalData.token = token;
-    if (!userInfo || !userInfo.id || !token) {
+
+    if ((!userInfo || !userInfo.id  )  && (!doctorInfo || !doctorInfo.id)) {
       wx.showToast({
         title: '请登录',
       })

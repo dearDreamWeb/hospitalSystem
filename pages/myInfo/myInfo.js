@@ -2,7 +2,9 @@ const {
   uploadAvatar,
   updateUser,
 } = require('../../api/index')
-const { resetUserInfo } = require('../../utils/tools')
+const {
+  resetUserInfo
+} = require('../../utils/tools')
 
 var app = getApp();
 Page({
@@ -24,8 +26,9 @@ Page({
     this.setData({
       ...this.data,
       userInfo: app.globalData.userInfo,
-      avatarUrlInfo: app.globalData.userInfo.avatarUrl,
-      showAvatarUrlInfo: app.globalData.userInfo.avatarUrl
+      doctorInfo: app.globalData.doctorInfo,
+      avatarUrlInfo: app.globalData.userInfo.avatarUrl || app.globalData.doctorInfo.avatarUrl,
+      showAvatarUrlInfo: app.globalData.userInfo.avatarUrl || app.globalData.doctorInfo.avatarUrl
     })
   },
 
@@ -41,8 +44,13 @@ Page({
       sex,
       age,
     } = e.detail.value;
-    const { avatarUrlInfo, userInfo } = this.data;
-    const { id } = userInfo;
+    const {
+      avatarUrlInfo,
+      userInfo
+    } = this.data;
+    const {
+      id
+    } = userInfo;
 
     if (!name || !phone_number || !pwd || !sex || !age) {
       wx.showToast({
@@ -70,14 +78,21 @@ Page({
       })
       return;
     }
-    const res = await updateUser({
-      id, name,
-      phone_number,
-      pwd,
-      sex,
-      age,
-      avatarUrl: avatarUrlInfo,
-    })
+    let res;
+    if (userInfo) {
+      res = await updateUser({
+        id,
+        name,
+        phone_number,
+        pwd,
+        sex,
+        age,
+        avatarUrl: avatarUrlInfo,
+      })
+    }else{
+      
+    }
+
     if (!res.success) {
       wx.showToast({
         title: '修改失败'
@@ -100,9 +115,12 @@ Page({
   /**
    * 上传头像
    */
-   async uploadAvatar(){
+  async uploadAvatar() {
     const res = await uploadAvatar();
-    const { absolutePath, name } = res.data;
+    const {
+      absolutePath,
+      name
+    } = res.data;
     this.setData({
       ...this.data,
       avatarUrlInfo: name,

@@ -145,7 +145,7 @@ Page({
     const res = await login({
       phone,
       pwd,
-      type:userType
+      type: userType
     })
     if (!res.success) {
       wx.showToast({
@@ -155,11 +155,17 @@ Page({
     }
     const {
       token,
-      userInfo
+      userInfo,
+      doctorInfo
     } = res.data;
-    wx.setStorageSync('userInfo', userInfo);
+    if(userInfo){
+      wx.setStorageSync('userInfo', userInfo);
+      app.globalData.userInfo = userInfo
+    }else{
+      wx.setStorageSync('doctorInfo', doctorInfo);
+      app.globalData.doctorInfo = doctorInfo
+    }
     wx.setStorageSync('token', token);
-    app.globalData.userInfo = userInfo
     app.globalData.token = token
     wx.showToast({
       title: '登录成功',

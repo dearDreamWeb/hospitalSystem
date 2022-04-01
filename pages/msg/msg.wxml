@@ -1,0 +1,15 @@
+<view class='main'>
+  <view class="text">本次问诊评分：</view>
+  <view class='wx-star-panel'>
+    <view class='wx-star' wx:for="{{wxStar}}" wx:for-item="starItem" wx:for-index="idx" wx:key="{{idx}}">
+      <view class='wx-half-star {{index==0?"wx-star-left":"wx-star-right"}} {{item==1?"wx-star-checked":""}}' wx:for="{{starItem}}" wx:key="{{index}}" bindtap='wxStarChange' data-index='{{index}}' data-idx='{{idx}}'>
+        ★
+      </view>
+    </view>
+  </view>
+  <view class="comment-box">
+    <view >本次问诊的评价：</view>
+    <textarea class="comment-main" bindinput="changeContent" placeholder='请输入评价内容'></textarea>
+    <button class='btn' type="primary" bindtap='submit'>提交评价</button>
+  </view>
+</view>

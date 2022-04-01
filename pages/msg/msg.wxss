@@ -1,0 +1,45 @@
+.wx-star-panel{
+  display: flex;
+}
+.wx-star{
+  position: relative;
+  flex: 1;
+  height: 80rpx;
+  margin: 10rpx;
+  color: #ccc;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 80rpx;
+}
+.wx-star-right{
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 50%;
+  bottom: 0;
+  overflow: hidden;
+  text-indent: -50%;
+}
+
+.wx-star .wx-star-checked{
+  color: #FF9800;
+}
+.text{
+  text-align: center;
+  margin-bottom: 16px;
+}
+.comment-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+}
+.comment-main{
+  margin-top: 16px;
+  width: 100%;
+  border:1px solid #ccc;
+}
+.btn{
+  margin-top: 12px;
+}

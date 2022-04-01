@@ -13,7 +13,7 @@ Page({
     list: [],
     options: [
       {
-        status: 2,
+        status: -1,
         text: '全部'
       },
       {
@@ -23,6 +23,10 @@ Page({
       {
         status: 1,
         text: '预约成功'
+      },
+      {
+        status: 2,
+        text: '问诊成功'
       },
     ],
     selected: 0
@@ -50,7 +54,7 @@ Page({
     }else{
       params.doctorId = doctorInfo.id
     }
-    if (options[selected].status !== 2) {
+    if (options[selected].status !== -1) {
       params.status = options[selected].status
     }
     const res = await queryUserAppointment(params);
@@ -79,4 +83,13 @@ Page({
       this.queryList();
     })
   },
+
+  jumpToMsg(e){
+    const {
+      data
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '/pages/msg/msg',
+    })
+  }
 })

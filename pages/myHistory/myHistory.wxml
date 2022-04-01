@@ -1,7 +1,7 @@
 <view class="list-main">
     <view class="title">预约记录：</view>
+    <view>预约状态查询：</view>
     <view class="status-box">
-        预约状态查询：
         <view bind:tap="changeStatus" data-index="{{index}}" class="status-text {{selected === index?'selected':''}}" wx:for="{{options}}" wx:key="options" wx:for-item="optionsItem" wx:for-index="index">
             {{optionsItem.text}}
         </view>
@@ -23,14 +23,15 @@
                 </view>
                 <view>
                     <text class="item-title">预约医生：</text>
-                    {{item.reserveUser}}
+                    {{item.doctorName}}
                 </view>
                 <view>
                     <text class="item-title">预约费用：</text>
                     ￥{{item.reserveMoney}}
                 </view>
             </view>
-            <image class="status" src="{{item.status ===1?'../../images/appointmentSuccess.png':'../../images/appointmentFail.png'}}" />
+            <image class="status" src="{{item.status ===1?'../../images/appointmentSuccess.png':item.status===0?'../../images/appointmentFail.png':''}}" />
         </view>
+        <view bindtap="jumpToMsg" data-data="{{item}}">评价</view>
     </block>
 </view>

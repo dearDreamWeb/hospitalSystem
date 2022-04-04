@@ -12,13 +12,15 @@
     font-weight: 600;
   }
 .list-box{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin: 20px 0;
     padding: 10px;
     background-color: #fff;
     color:#333;
+}
+.list-infoMain{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .item-title{
     font-size: 14px;
@@ -47,4 +49,13 @@
 .selected{
     background-color: #ea5b5b;
     color:#fff;
+}
+
+.comment-box{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.comment-btn{
+    margin: 0;
 }

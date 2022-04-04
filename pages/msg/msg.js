@@ -1,4 +1,5 @@
-// pages/msg/msg.js
+const { addComment } = require('../../api/index')
+
 Page({
 
   /**
@@ -8,13 +9,18 @@ Page({
     wxStar: [],
     count: 0,
     wxStarEdit: true,
-    msgContent: ''
+    msgContent: '',
+    info: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      ...this.data,
+      info: JSON.parse(options.info)
+    })
     // 初始化星数
     this.wxStarInit();
   },
@@ -74,13 +80,39 @@ Page({
       count
     })
   },
+
   changeContent(e) {
     this.setData({
       msgContent: e.detail.value
     })
   },
-  submit() {
-    console.log(this.data.msgContent)
+
+  async submit() {
+    const { count, msgContent, info } = this.data;
+    const { doctorName, doctorId, id } = info;
+    const res = await addComment({
+      doctorName,
+      doctorId,
+      msg: msgContent,
+      grade: count,
+      reserveId: id
+    })
+    if(!count || !msgContent){
+      wx.showToast({
+        title: '请评分和评价',
+      });
+      return
+    }
+    if(res.data.success){
+      wx.showToast({
+        title: '评价成功',
+        success(){
+          wx.navigateTo({
+            url: '/page/myHistory/myHistory',
+          });
+        }
+      });
+    }
   },
 
 })

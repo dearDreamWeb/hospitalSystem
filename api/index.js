@@ -105,7 +105,7 @@ const getUserInfo = (data) => {
  * 用户查询自己的预约列表
  * @param {*} data 
  */
-const queryUserAppointment = (data)=>{
+const queryUserAppointment = (data) => {
   return request({
     url: '/reserve/query',
     method: 'get',
@@ -114,10 +114,20 @@ const queryUserAppointment = (data)=>{
 }
 
 // 修改医生
-export const updateDoctor = (data) => {
-  return request('/doctor', {
-      method: 'put',
-      data
+const updateDoctor = (data) => {
+  return request({
+    url: '/doctor',
+    method: 'put',
+    data
+  });
+};
+
+// 添加评论
+const addComment = (data) => {
+  return request({
+    url: '/message',
+    method: 'post',
+    data
   });
 };
 
@@ -136,4 +146,5 @@ module.exports = {
   updateDoctor,
   updateUser,
   queryRechargeHistory,
+  addComment,
 }

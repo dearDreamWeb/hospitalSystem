@@ -88,8 +88,9 @@ Page({
     const {
       data
     } = e.currentTarget.dataset
+    console.log(data)
     wx.navigateTo({
-      url: '/pages/msg/msg',
+      url: `/pages/msg/msg?info=${JSON.stringify(data)}`,
     })
   }
 })

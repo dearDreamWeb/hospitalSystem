@@ -59,7 +59,7 @@ Page({
     if (!res.success) {
       return;
     }
-    let list = res.data || [];
+    let list = res.data.items || [];
     list = list.map((item) => {
       return {
         ...item,

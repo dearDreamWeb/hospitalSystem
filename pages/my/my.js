@@ -1,12 +1,13 @@
 const {
-  rechargeApi,getUserInfo
+  rechargeApi, getUserInfo, doctorGetMessageTotal
 } = require('../../api/index')
-const {resetUserInfo} = require('../../utils/tools')
+const { resetUserInfo } = require('../../utils/tools')
 var app = getApp();
 Page({
   data: {
     userInfo: {},
     doctorInfo: {},
+    unReadNum: 0
   },
   onShow: async function () {
     if (typeof this.getTabBar === 'function' &&
@@ -25,11 +26,12 @@ Page({
       userInfo,
       doctorInfo
     })
+    this.queryComments()
   },
   /**
    * 充值
    */
-   recharge(){
+  recharge() {
     const that = this;
     wx.showModal({
       title: '充值',
@@ -40,7 +42,7 @@ Page({
           content
         } = res;
         if (res.confirm) {
-          
+
           const reg = /^[1-9][0-9]{0,}$/;
           if (!reg.test(content)) {
             wx.showToast({
@@ -60,7 +62,7 @@ Page({
           }
           const resUserInfo = await getUserInfo();
           if (!resUserInfo.success) {
-              return;
+            return;
           }
           wx.setStorageSync('userInfo', resUserInfo.data);
           app.globalData.userInfo = resUserInfo.data;
@@ -75,7 +77,7 @@ Page({
   /**
    * 跳转个人详情
    */
-  jumpToMyInfo(){
+  jumpToMyInfo() {
     const {
       userInfo,
       doctorInfo
@@ -98,5 +100,18 @@ Page({
     wx.navigateTo({
       url: '../rege_login/rege_login',
     })
-  }
+  },
+
+  async queryComments() {
+    const doctorInfo = app.globalData.doctorInfo;
+    const res = await doctorGetMessageTotal({ doctorId: doctorInfo.id });
+    if (!res.success) {
+      return;
+    }
+    console.log()
+    this.setData({
+      ...this.data,
+      unReadNum: res.data.total || 0
+    })
+  },
 })

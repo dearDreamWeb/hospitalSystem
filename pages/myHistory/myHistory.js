@@ -29,7 +29,8 @@ Page({
         text: '问诊成功'
       },
     ],
-    selected: 0
+    selected: 0,
+    isDoctor:false,
   },
 
   /**
@@ -37,6 +38,10 @@ Page({
    */
   onLoad: async function (options) {
     this.queryList();
+    this.setData({
+      ...this.data,
+      isDoctor: !app.globalData.userInfo
+    })
   },
 
   async queryList() {

@@ -35,6 +35,12 @@
       <navigator url="../myHistory/myHistory"><text class="word">预约记录</text></navigator>
       <text class="iconfont icon-jiantou"></text>
     </view>
+    <view class="my-items my-suggests">
+      <text class="iconfont icon-gonggao"></text>
+      <navigator url="../doctorComment/doctorComment"><text class="word">评论记录</text></navigator>
+      <text wx:if="{{unReadNum}}" class="un-read">{{unReadNum}}</text>
+      <text class="iconfont icon-jiantou"></text>
+    </view>
   </view>
   <view class="my-items my-info" bindtap="logOut">
     <text class="iconfont icon-fangke"></text>

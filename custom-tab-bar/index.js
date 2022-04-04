@@ -1,4 +1,4 @@
-var app = getApp();
+
 Component({
   data: {
     selected: 0,
@@ -56,7 +56,7 @@ Component({
     list: []
   },
   attached() {
-    
+    var app = getApp();
     this.setData({
       list: app.globalData.userInfo?this.data.allList[0].list1:this.data.allList[0].list2
     })

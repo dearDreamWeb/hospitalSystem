@@ -1,4 +1,4 @@
-<view class="doctor-detil">
+<view class="doctor-detil main">
   <view class="avatar-box">
     <image class="avatar" src="{{doctorInfo.avatarUrl || '../../images/doctor.png'}}" />
   </view>
@@ -15,11 +15,14 @@
       <text class="price">￥{{doctorInfo.price}}</text>
     </view>
     <view class="info-item">擅长：{{doctorInfo.adept}}</view>
-    <view class="comment-box">
-      <view class="comment-item" wx:for="{{commentList}}" wx:key="commentList" wx:for-item="item">
-        <view class="grade-box">评分指数：{{item.grade/2}}颗星</view>
-        <view class="comment-user">{{item.userName}}：{{item.msg}}</view>
-        <view>{{item.createTime}}</view>
+    <view wx:if="{{commentList&&commentList.length}}">
+      <view class="info-item comment-history">评论记录：</view>
+      <view class="comment-box">
+        <view class="comment-item" wx:for="{{commentList}}" wx:key="commentList" wx:for-item="item">
+          <view class="time">{{item.createTime}}</view>
+          <view class="grade-box">评分指数：{{item.grade/2}}颗星</view>
+          <view class="comment-user">{{item.userName}}：{{item.msg}}</view>
+        </view>
       </view>
     </view>
   </view>

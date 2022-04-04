@@ -68,7 +68,17 @@ button.complect {
 .my-items navigator {
   width: 560rpx
 }
-
+.un-read{
+  display: inline-flex;
+  color: red;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: #e4e4e4;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+}
 .my-items .iconfont {
   font-size: 36rpx;
   padding-right: 30rpx;

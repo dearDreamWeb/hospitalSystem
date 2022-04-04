@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/my/my",
     "pages/appointment/appointment",
     "pages/myHistory/myHistory",
     "pages/index/index",
     "pages/rege_login/rege_login",
     "pages/coronavirus/coronavirus",
     "pages/msg/msg",
-    "pages/my/my",
     "pages/doctors/doctors",
     "pages/phone_number/phone_number",
     "pages/rent/rent",
@@ -14,7 +14,8 @@
     "pages/coronavirusNews/coronavirusNews",
     "pages/doctorDetil/doctorDetil",
     "pages/myInfo/myInfo",
-    "pages/rechargeHistory/rechargeHistory"
+    "pages/rechargeHistory/rechargeHistory",
+    "pages/doctorComment/doctorComment"
   ],
   "window": {
     "backgroundTextStyle": "light",

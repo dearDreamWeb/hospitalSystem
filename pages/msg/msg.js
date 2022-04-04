@@ -20,12 +20,12 @@ Page({
     this.setData({
       ...this.data,
       info: JSON.parse(options.info),
-      wxStarEdit: options.comment==='true'
+      wxStarEdit: options.comment === 'true'
     })
     console.log(options)
     // 初始化星数
     this.wxStarInit();
-    if (options.comment==='false') {
+    if (options.comment === 'false') {
       this.queryInfo()
     }
   },
@@ -37,7 +37,7 @@ Page({
       ...this.data,
       count: grade,
       msgContent: msg,
-    },()=>{
+    }, () => {
       this.wxStarInit();
     })
   },
@@ -123,12 +123,12 @@ Page({
     if (res.success) {
       wx.showToast({
         title: '评价成功',
-        success() {
-          wx.navigateTo({
-            url: '/page/myHistory/myHistory',
-          });
-        }
       });
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '../myHistory/myHistory',
+        })
+      }, 1800)
     }
   },
 

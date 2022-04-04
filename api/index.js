@@ -140,10 +140,19 @@ const getMessageByDoctorId = (data) => {
   });
 };
 
-// 用户获取自己的评论
+// 医生获取自己的评论
 const getMessageByDoctorIdAndUserId = (data) => {
   return request({
     url: '/message/getMessageByDoctorIdAndUserId',
+    method: 'get',
+    data
+  });
+};
+
+// 医生获取未读评论
+const doctorGetMessageTotal = (data) => {
+  return request({
+    url: '/message/doctorGetMessageTotal',
     method: 'get',
     data
   });
@@ -167,4 +176,5 @@ module.exports = {
   addComment,
   getMessageByDoctorId,
   getMessageByDoctorIdAndUserId,
+  doctorGetMessageTotal,
 }

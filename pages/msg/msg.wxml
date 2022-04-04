@@ -9,7 +9,7 @@
   </view>
   <view class="comment-box">
     <view >本次问诊的评价：</view>
-    <textarea class="comment-main" bindinput="changeContent" placeholder='请输入评价内容'></textarea>
+    <textarea class="comment-main" bindinput="changeContent" placeholder='请输入评价内容' value="{{msgContent}}" disabled="{{!wxStarEdit}}"></textarea>
     <button class='btn' type="primary" bindtap='submit'>提交评价</button>
   </view>
 </view>

@@ -86,11 +86,11 @@ Page({
 
   jumpToMsg(e){
     const {
-      data
+      data,
+      comment
     } = e.currentTarget.dataset
-    console.log(data)
     wx.navigateTo({
-      url: `/pages/msg/msg?info=${JSON.stringify(data)}`,
+      url: `/pages/msg/msg?info=${JSON.stringify(data)}&comment=${comment}`,
     })
   }
 })

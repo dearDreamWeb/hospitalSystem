@@ -15,5 +15,12 @@
       <text class="price">￥{{doctorInfo.price}}</text>
     </view>
     <view class="info-item">擅长：{{doctorInfo.adept}}</view>
+    <view class="comment-box">
+      <view class="comment-item" wx:for="{{commentList}}" wx:key="commentList" wx:for-item="item">
+        <view class="grade-box">评分指数：{{item.grade/2}}颗星</view>
+        <view class="comment-user">{{item.userName}}：{{item.msg}}</view>
+        <view>{{item.createTime}}</view>
+      </view>
+    </view>
   </view>
 </view>

@@ -1,11 +1,14 @@
-// pages/doctorDetil/doctorDetil.js
+const { getMessageByDoctorId } = require('../../api/index')
+const { formatTime } = require('../../utils/tools');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    doctorInfo:{}
+    doctorInfo: {},
+    commentList:[],
   },
 
   /**
@@ -13,58 +16,27 @@ Page({
    */
   onLoad: function (options) {
     const data = JSON.parse(options.data);
-    console.log(data);
     this.setData({
       doctorInfo: data
+    });
+    this.queryComments();
+  },
+
+  async queryComments() {
+    const {doctorInfo} = this.data;
+    const res = await getMessageByDoctorId({doctorId:doctorInfo.id});
+    if(!res.success){
+      return;
+    }
+    const list = res.data.items.map((item)=>{
+      return{
+        ...item,
+        createTime: formatTime(item.createTime),
+      }
+    });
+    this.setData({
+      ...this.data,
+      commentList:list
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

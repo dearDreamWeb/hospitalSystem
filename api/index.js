@@ -131,6 +131,24 @@ const addComment = (data) => {
   });
 };
 
+// 获取医生的评论
+const getMessageByDoctorId = (data) => {
+  return request({
+    url: '/message/getMessageByDoctorId',
+    method: 'get',
+    data
+  });
+};
+
+// 用户获取自己的评论
+const getMessageByDoctorIdAndUserId = (data) => {
+  return request({
+    url: '/message/getMessageByDoctorIdAndUserId',
+    method: 'get',
+    data
+  });
+};
+
 module.exports = {
   register,
   login,
@@ -147,4 +165,6 @@ module.exports = {
   updateUser,
   queryRechargeHistory,
   addComment,
+  getMessageByDoctorId,
+  getMessageByDoctorIdAndUserId,
 }

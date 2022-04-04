@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/appointment/appointment",
     "pages/myHistory/myHistory",
     "pages/index/index",
-    "pages/appointment/appointment",
     "pages/rege_login/rege_login",
     "pages/coronavirus/coronavirus",
     "pages/msg/msg",

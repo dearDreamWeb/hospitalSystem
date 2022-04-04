@@ -34,10 +34,10 @@
                 <image class="status" src="{{item.status ===1?'../../images/appointmentSuccess.png':item.status===0?'../../images/appointmentFail.png':'../../images/successfulConsultation.png'}}" />
             </view>
             <view class="comment-box" wx:if="{{item.status===2}}">
-                <button wx:if="{{item.evaluateStatus!==1}}" class="comment-btn" bindtap="jumpToMsg" data-data="{{item}}" type="primary" size="mini">
+                <button wx:if="{{item.evaluateStatus!==1}}" class="comment-btn" bindtap="jumpToMsg" data-data="{{item}}" data-comment="{{true}}" type="primary" size="mini">
                     评价
                 </button>
-                <button wx:else class="comment-btn" bindtap="jumpToMsg" data-data="{{item}}" size="mini">
+                <button wx:else class="comment-btn" bindtap="jumpToMsg" data-data="{{item}}" data-comment="{{false}}" size="mini">
                     已评价
                 </button>
             </view>

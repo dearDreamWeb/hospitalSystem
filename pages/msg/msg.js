@@ -1,4 +1,4 @@
-const { addComment } = require('../../api/index')
+const { addComment, getMessageByDoctorIdAndUserId } = require('../../api/index')
 
 Page({
 
@@ -8,8 +8,8 @@ Page({
   data: {
     wxStar: [],
     count: 0,
-    wxStarEdit: true,
     msgContent: '',
+    wxStarEdit: true,
     info: {}
   },
 
@@ -19,10 +19,27 @@ Page({
   onLoad: function (options) {
     this.setData({
       ...this.data,
-      info: JSON.parse(options.info)
+      info: JSON.parse(options.info),
+      wxStarEdit: options.comment==='true'
     })
+    console.log(options)
     // 初始化星数
     this.wxStarInit();
+    if (options.comment==='false') {
+      this.queryInfo()
+    }
+  },
+
+  async queryInfo() {
+    const res = await getMessageByDoctorIdAndUserId({ reserveId: this.data.info.id })
+    const { grade, msg } = res.data;
+    this.setData({
+      ...this.data,
+      count: grade,
+      msgContent: msg,
+    },()=>{
+      this.wxStarInit();
+    })
   },
 
   wxStarChange(e) {
@@ -97,16 +114,16 @@ Page({
       grade: count,
       reserveId: id
     })
-    if(!count || !msgContent){
+    if (!count || !msgContent) {
       wx.showToast({
         title: '请评分和评价',
       });
       return
     }
-    if(res.data.success){
+    if (res.success) {
       wx.showToast({
         title: '评价成功',
-        success(){
+        success() {
           wx.navigateTo({
             url: '/page/myHistory/myHistory',
           });
